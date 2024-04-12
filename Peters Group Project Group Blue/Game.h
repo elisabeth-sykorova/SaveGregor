@@ -11,6 +11,15 @@
 /// </summary>
 #include <SFML/Graphics.hpp>
 
+#include "Gregor.h"
+#include "SmallApple.h"
+#include "BigApple.h"
+#include "RottenApple.h"
+#include "Settings.h"
+#include "Instructions.h"
+#include "Upgrades.h"
+#include "Menu.h"
+
 class Game
 {
 public:

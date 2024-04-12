@@ -19,11 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BigApple.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gregor.cpp" />
+    <ClCompile Include="Instructions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="RottenApple.cpp" />
+    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="SmallApple.cpp" />
+    <ClCompile Include="Upgrades.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BigApple.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gregor.h" />
+    <ClInclude Include="Instructions.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="RottenApple.h" />
+    <ClInclude Include="Settings.h" />
+    <ClInclude Include="SmallApple.h" />
+    <ClInclude Include="Upgrades.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\SFML-LOGO.png">
@@ -96,10 +112,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SFML_SDK)/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SFML_SDK)\C:\SFML-2.5.1/include;$(SFML_SDK)/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SFML_SDK)\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SFML_SDK)\C:\SFML-2.5.1\lib;$(SFML_SDK)\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
