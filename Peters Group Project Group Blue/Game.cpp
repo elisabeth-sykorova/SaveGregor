@@ -22,6 +22,11 @@ Game::Game() :
 {
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
+
+	for (int index = 0; index < MAX_SMALL_APPLES; index++)
+	{
+		smallApples[index].spawn();
+	}
 }
 
 /// <summary>
