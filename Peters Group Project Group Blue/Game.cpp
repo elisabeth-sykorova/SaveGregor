@@ -7,6 +7,8 @@
 
 #include "Game.h"
 #include <iostream>
+#include "ctime"
+#include"cstdlib"
 
 
 
@@ -42,6 +44,7 @@ Game::~Game()
 /// </summary>
 void Game::run()
 {	
+	srand((int)time(nullptr)); // set the seed once
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const float fps{ 60.0f };

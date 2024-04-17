@@ -27,6 +27,7 @@ sf::Sprite Gregor::getGregor()
 void Gregor::update()
 {
 	move();
+	randomMove();
 }
 
 void Gregor::move()
@@ -42,17 +43,23 @@ void Gregor::move()
 	}
 	if (m_direction == NW)
 	{
-		if (m_location.y > 200 && m_location.x > 200)
+		if (m_location.y > 200)
 		{
 			m_location.y -= m_speed;
+		}
+		if (m_location.x > 200)
+		{
 			m_location.x -= m_speed;
 		}
 	}
 	if (m_direction == NE)
 	{
-		if (m_location.y > 200 && m_location.x < 1000)
+		if (m_location.y > 200)
 		{
 			m_location.y -= m_speed;
+		}
+		if (m_location.x < 1000)
+		{
 			m_location.x += m_speed;
 		}
 	}
@@ -65,17 +72,23 @@ void Gregor::move()
 	}
 	if (m_direction == SW)
 	{
-		if (m_location.y < 700 && m_location.x > 200)
+		if (m_location.y < 700)
 		{
 			m_location.y += m_speed;
+		}
+		if (m_location.x > 200)
+		{
 			m_location.x -= m_speed;
 		}
 	}
 	if (m_direction == SE)
 	{
-		if (m_location.y < 700 && m_location.x < 1000)
+		if (m_location.y < 700)
 		{
 			m_location.y += m_speed;
+		}
+		if (m_location.x < 1000)
+		{
 			m_location.x += m_speed;
 		}
 	}
@@ -94,4 +107,19 @@ void Gregor::move()
 		}
 	}
 	m_gregorSprite.setPosition(m_location);
+}
+
+void Gregor::randomMove()
+{
+	if (m_countdown != COUNTDOWN_DURATION) // constant is set to 120 to have a 2 second timer
+	{
+		m_countdown++;
+	}
+	else
+	{
+
+		m_direction = (rand() % 8) + 1; // generates a random number between 1 and 12
+		m_countdown = 0; // sets countdown to 0
+	}
+
 }

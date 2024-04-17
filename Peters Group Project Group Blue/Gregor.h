@@ -1,11 +1,14 @@
 // Name : Leo Bolaks
 // Login: C00299368
-// Work Done: loaded gregor 17-04-2024, added gregor movement 17-04-2024
+// Work Done: loaded gregor 17-04-2024, added gregor movement 17-04-2024,
 
 #ifndef Gregor_HPP
 #define Gregor_HPP
 
 #include <SFML/Graphics.hpp>
+
+#include "ctime"
+#include "cstdlib"
 
 class Gregor
 {
@@ -23,8 +26,11 @@ class Gregor
 	const int SW = 8;
 	int m_direction = NORTH;
 
-	float m_speed = 1.5f; // gregors speed
+	float m_speed = 2.0f; // gregors speed
 	sf::Vector2f m_location;
+
+	const float COUNTDOWN_DURATION = 120.0f;
+	float m_countdown = 0.0f;
 
 
 public:
@@ -37,6 +43,7 @@ public:
 	void update();
 
 	void move();
+	void randomMove();
 
 
 };
