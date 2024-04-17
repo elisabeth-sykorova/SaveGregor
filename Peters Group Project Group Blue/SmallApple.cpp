@@ -1,9 +1,14 @@
 #include "SmallApple.h"
 #include <iostream>
+#include <iostream>
+#include "ctime"
+#include "cstdlib"
+
 
 SmallApple::SmallApple()
 {
 	loadSmallApple();
+	//srand((int)time(nullptr));
 }
 
 void SmallApple::loadSmallApple()
@@ -62,5 +67,26 @@ void SmallApple::spawn()
 
 		m_sprite.setPosition(xRespawn, yRespawn);
 		std::cout << "apple position set to x:" << xRespawn << " y:" << yRespawn << std::endl;
+
+}
+
+void SmallApple::setLine(sf::Vector2f t_gregorPosition)
+{
+
+	m_velocity = m_sprite.getPosition() - t_gregorPosition;
+
+	m_lineLength = std::sqrt(m_velocity.x * m_velocity.x + m_velocity.y * m_velocity.y); // pythagoras to get magnitude
+
+	m_velocity /= m_lineLength;
+
+	m_velocity *= m_speed;
+}
+
+void SmallApple::move()
+{
+	m_position += m_velocity;
+
+	m_sprite.setPosition(m_position);
+
 
 }
