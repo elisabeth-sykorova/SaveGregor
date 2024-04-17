@@ -47,6 +47,11 @@ private:
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
 
+	// small apple
+	
+	static const int MAX_SMALL_APPLES = 1;
+	SmallApple smallApples[MAX_SMALL_APPLES];
+
 };
 
 #endif // !GAME_HPP

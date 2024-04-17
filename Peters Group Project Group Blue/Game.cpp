@@ -113,6 +113,10 @@ void Game::render()
 	m_window.clear(sf::Color::White);
 	m_window.draw(m_welcomeMessage);
 	m_window.draw(m_logoSprite);
+	for (int index = 0; index < MAX_SMALL_APPLES; index++)
+	{
+		m_window.draw(smallApples[0].getSprite());
+	}
 	m_window.display();
 }
 
