@@ -7,6 +7,8 @@
 
 #include "Game.h"
 #include <iostream>
+#include "ctime"
+#include"cstdlib"
 
 
 
@@ -17,7 +19,7 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ 1200U, 900U, 32U }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
@@ -47,6 +49,7 @@ Game::~Game()
 /// </summary>
 void Game::run()
 {	
+	srand((int)time(nullptr)); // set the seed once
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const float fps{ 60.0f };
@@ -108,6 +111,7 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+	gregor.update();
 }
 
 /// <summary>
@@ -116,12 +120,11 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	m_window.draw(m_welcomeMessage);
-	m_window.draw(m_logoSprite);
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
 		m_window.draw(smallApples[0].getSprite());
 	}
+	m_window.draw(gregor.getGregor());
 	m_window.display();
 }
 
