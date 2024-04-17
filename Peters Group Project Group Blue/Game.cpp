@@ -103,6 +103,7 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+	gregor.update();
 }
 
 /// <summary>

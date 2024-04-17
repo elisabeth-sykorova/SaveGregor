@@ -23,3 +23,75 @@ sf::Sprite Gregor::getGregor()
 {
 	return m_gregorSprite;
 }
+
+void Gregor::update()
+{
+	move();
+}
+
+void Gregor::move()
+{
+	m_location = m_gregorSprite.getPosition();
+
+	if (m_direction == NORTH)
+	{
+		if (m_location.y > 200)
+		{
+			m_location.y -= m_speed;
+		}
+	}
+	if (m_direction == NW)
+	{
+		if (m_location.y > 200 && m_location.x > 200)
+		{
+			m_location.y -= m_speed;
+			m_location.x -= m_speed;
+		}
+	}
+	if (m_direction == NE)
+	{
+		if (m_location.y > 200 && m_location.x < 1000)
+		{
+			m_location.y -= m_speed;
+			m_location.x += m_speed;
+		}
+	}
+	if (m_direction == SOUTH)
+	{
+		if (m_location.y < 700)
+		{
+			m_location.y += m_speed;
+		}
+	}
+	if (m_direction == SW)
+	{
+		if (m_location.y < 700 && m_location.x > 200)
+		{
+			m_location.y += m_speed;
+			m_location.x -= m_speed;
+		}
+	}
+	if (m_direction == SE)
+	{
+		if (m_location.y < 700 && m_location.x < 1000)
+		{
+			m_location.y += m_speed;
+			m_location.x += m_speed;
+		}
+	}
+	if (m_direction == EAST)
+	{
+		if (m_location.x < 700)
+		{
+			m_location.x += m_speed;
+		}
+	}
+	if (m_direction == WEST)
+	{
+		if (m_location.x > 200)
+		{
+			m_location.x -= m_speed;
+		}
+	}
+	m_gregorSprite.setPosition(m_location);
+}
