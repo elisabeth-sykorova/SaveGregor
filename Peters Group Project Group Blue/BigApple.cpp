@@ -29,7 +29,10 @@ sf::Sprite BigApple::getSprite()
 void BigApple::update(sf::Vector2f t_gregorPosition)
 {
 	move();
-	setLine(t_gregorPosition);
+	if (!m_bigAppleAlive)
+	{
+		respawn(t_gregorPosition);
+	}
 }
 
 void BigApple::spawn()
@@ -99,4 +102,12 @@ void BigApple::move()
 	{
 		m_bigAppleAlive = false;
 	}
+}
+
+void BigApple::respawn(sf::Vector2f t_gregorPosition)
+{
+	spawn();
+	setLine(t_gregorPosition);
+	m_bigAppleAlive = true;
+	m_reflected = false;
 }

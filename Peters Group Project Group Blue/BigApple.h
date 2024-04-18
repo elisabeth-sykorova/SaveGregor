@@ -22,7 +22,7 @@ class BigApple
 	sf::Vector2f m_position{ 0.0f,0.0f };
 	sf::Sprite m_sprite;
 	float m_scale = 0.13f;
-	float m_speed = 2.5f;
+	float m_speed = 2.0f;
 	float m_lineLength;
 	sf::Vector2f m_velocity;
 	
@@ -43,6 +43,8 @@ public:
 	void spawn();
 	void setLine(sf::Vector2f t_gregorPosition);
 	void move();
+
+	void respawn(sf::Vector2f t_gregorPosition);
 
 
 
