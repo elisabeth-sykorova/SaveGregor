@@ -26,6 +26,12 @@ sf::Sprite BigApple::getSprite()
 	return m_sprite;
 }
 
+void BigApple::update(sf::Vector2f t_gregorPosition)
+{
+	move();
+	setLine(t_gregorPosition);
+}
+
 void BigApple::spawn()
 {
 	int side = rand() % 4;
@@ -62,4 +68,35 @@ void BigApple::spawn()
 
 	m_position = sf::Vector2f(xRespawn, yRespawn);
 	m_sprite.setPosition(m_position);
+}
+
+void BigApple::setLine(sf::Vector2f t_gregorPosition)
+{
+	m_velocity = m_sprite.getPosition() - t_gregorPosition;
+
+	m_lineLength = std::sqrt(m_velocity.x * m_velocity.x + m_velocity.y * m_velocity.y); // pythagoras to get magnitude
+
+	m_velocity /= m_lineLength;
+
+	m_velocity *= m_speed;
+}
+
+void BigApple::move()
+{
+	if (!m_reflected)
+	{
+		m_position -= m_velocity;
+	}
+	else if (m_reflected)
+	{
+		m_position.x += m_velocity.x * 3;
+		m_position.y += m_velocity.y * 3;
+	}
+
+	m_sprite.setPosition(m_position);
+
+	if (m_position.x > SCREEN_WIDTH_BIG_APPLE + 150 || m_position.x < -150 || m_position.y > SCREEN_HEIGHT_BIG_APPLE + 150 || m_position.y < -150)
+	{
+		m_bigAppleAlive = false;
+	}
 }

@@ -1,6 +1,6 @@
 // Name : Leo Bolaks
 // Login: C00299368
-// Work Done: set up sprite
+// Work Done: set up sprite, set up sprite spawn, movement, and line following Gregor
 //
 
 #ifndef BigApple_HPP
@@ -21,7 +21,15 @@ class BigApple
 	sf::Texture m_texture;
 	sf::Vector2f m_position{ 0.0f,0.0f };
 	sf::Sprite m_sprite;
-	float m_scale = 0.27;
+	float m_scale = 0.13f;
+	float m_speed = 2.5f;
+	float m_lineLength;
+	sf::Vector2f m_velocity;
+	
+
+	bool m_bigAppleAlive = false;
+
+	bool m_reflected = false;
 
 
 public:
@@ -29,7 +37,12 @@ public:
 
 	void loadBigApple();
 	sf::Sprite getSprite();
+
+	void update(sf::Vector2f t_gregorPosition);
+
 	void spawn();
+	void setLine(sf::Vector2f t_gregorPosition);
+	void move();
 
 
 
