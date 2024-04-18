@@ -92,7 +92,7 @@ void Gregor::move()
 	if (m_direction == SE)
 	{
 		m_gregorSprite.setRotation(135);
-		if (m_location.y < GREGOR_SCREEN_WIDTH - 200)
+		if (m_location.y < GREGOR_SCREEN_HEIGHT - 200)
 		{
 			m_location.y += m_speed;
 		}
