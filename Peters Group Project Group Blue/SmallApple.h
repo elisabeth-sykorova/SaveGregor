@@ -29,6 +29,11 @@ class SmallApple
 
 	bool m_smallAppleAlive = false;
 
+	bool m_reflected = false;
+	bool m_canReflect = true;
+
+	sf::CircleShape m_mousePoint;
+
 
 public:
 	SmallApple();
@@ -42,6 +47,8 @@ public:
 	void update(sf::Vector2f t_gregorPosition);
 
 	void respawn(sf::Vector2f t_gregorPosition);
+
+	void setReflectTrue();
 
 
 };

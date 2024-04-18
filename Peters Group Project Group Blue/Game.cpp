@@ -24,6 +24,7 @@ Game::Game() :
 {
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
+	setupMouseDot();
 
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
@@ -86,6 +87,15 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		if (sf::Event::MouseMoved == newEvent.type) // user pressed a mouse button 
+		{
+			processMouseMove(newEvent);
+			std::cout << "mouse released " << std::endl;
+		}
+		if (sf::Event::MouseButtonReleased == newEvent.type)
+		{
+			processMouseReleased();
+		}
 	}
 }
 
@@ -100,6 +110,9 @@ void Game::processKeys(sf::Event t_event)
 	{
 		m_exitGame = true;
 	}
+
+
+
 }
 
 /// <summary>
@@ -130,6 +143,7 @@ void Game::render()
 	{
 		m_window.draw(smallApples[index].getSprite());
 	}
+	m_window.draw(m_mouseDot);
 	m_window.draw(gregor.getGregor());
 	m_window.display();
 }
@@ -167,3 +181,32 @@ void Game::setupSprite()
 	m_logoSprite.setTexture(m_logoTexture);
 	m_logoSprite.setPosition(300.0f, 180.0f);
 }
+
+void Game::setupMouseDot()
+{
+	m_mouseDot.setRadius(1.0);
+	m_mouseDot.setOrigin(0.5, 0.5);
+	m_mouseDot.setFillColor(sf::Color::Black);
+}
+
+void Game::processMouseMove(sf::Event t_event)
+{
+	m_mouseEndVector.x = static_cast<float>(t_event.mouseMove.x);
+	std::cout << m_mouseEndVector.x << std::endl;
+	std::cout << m_mouseEndVector.y << std::endl;
+	m_mouseEndVector.y = static_cast<float>(t_event.mouseMove.y);
+	m_mouseDot.setPosition(m_mouseEndVector); // circle shape with the location of mouse to use for intersecting
+}
+
+void Game::processMouseReleased()
+{
+	for (int index = 0; index < MAX_SMALL_APPLES; index++)
+	{
+		if (m_mouseDot.getGlobalBounds().intersects(smallApples[index].getSprite().getGlobalBounds()))
+		{
+			smallApples[index].setReflectTrue();
+		}
+	}
+}
+
+

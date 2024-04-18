@@ -84,7 +84,15 @@ void SmallApple::setLine(sf::Vector2f t_gregorPosition)
 
 void SmallApple::move()
 {
-	m_position -= m_velocity;
+	if (!m_reflected)
+	{
+		m_position -= m_velocity;
+	}
+	else if (m_reflected)
+	{
+		m_position.x += m_velocity.x * 2;
+		m_position.y += m_velocity.y * 2;
+	}
 
 	m_sprite.setPosition(m_position);
 
@@ -105,4 +113,13 @@ void SmallApple::respawn(sf::Vector2f t_gregorPosition)
 	spawn();
 	setLine(t_gregorPosition);
 	m_smallAppleAlive = true;
+	m_reflected = false;
 }
+
+void SmallApple::setReflectTrue()
+{
+	m_reflected = true;
+}
+
+
+

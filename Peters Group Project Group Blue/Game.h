@@ -40,6 +40,7 @@ private:
 	
 	void setupFontAndText();
 	void setupSprite();
+	void setupMouseDot();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
@@ -53,6 +54,14 @@ private:
 	static const int MAX_SMALL_APPLES = 3;
 	SmallApple smallApples[MAX_SMALL_APPLES];
 	Gregor gregor;
+
+	// mouse point
+	sf::Vector2f m_mouseEndVector;
+	sf::CircleShape m_mouseDot;
+	sf::Vector2f m_mousePosition;
+
+	void processMouseMove(sf::Event t_event);
+	void processMouseReleased();
 
 };
 
