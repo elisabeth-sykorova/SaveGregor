@@ -44,6 +44,8 @@ public:
 	void setLine(sf::Vector2f t_gregorPosition);
 	void move();
 
+	void setAliveFalse();
+
 	void update(sf::Vector2f t_gregorPosition);
 
 	void respawn(sf::Vector2f t_gregorPosition);

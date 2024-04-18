@@ -126,6 +126,7 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 	gregor.update();
+	smallAppleCollisions();
 
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
@@ -139,12 +140,18 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
+	m_window.draw(gregor.getGregor());
+	m_window.draw(gregor.getGregorHitbox());
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
 		m_window.draw(smallApples[index].getSprite());
 	}
+<<<<<<< HEAD
 	m_window.draw(m_mouseDot);
 	m_window.draw(gregor.getGregor());
+=======
+	
+>>>>>>> 57853883084c6d257172e85dcdbc95ab52f83d4b
 	m_window.display();
 }
 
@@ -182,6 +189,7 @@ void Game::setupSprite()
 	m_logoSprite.setPosition(300.0f, 180.0f);
 }
 
+<<<<<<< HEAD
 void Game::setupMouseDot()
 {
 	m_mouseDot.setRadius(1.0);
@@ -210,3 +218,16 @@ void Game::processMouseReleased()
 }
 
 
+=======
+void Game::smallAppleCollisions()
+{
+	for (int i = 0; i < MAX_SMALL_APPLES; i++)
+	{
+		if (smallApples[i].getSprite().getGlobalBounds().intersects(gregor.getGregorHitbox().getGlobalBounds()))
+		{
+			smallApples[i].setAliveFalse();
+			gregor.takeAwayLife();
+		}
+	}
+}
+>>>>>>> 57853883084c6d257172e85dcdbc95ab52f83d4b
