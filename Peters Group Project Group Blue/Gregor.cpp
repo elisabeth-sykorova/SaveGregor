@@ -51,6 +51,11 @@ void Gregor::takeAwayLife()
 	m_lives--;
 }
 
+void Gregor::takeAway2Lives()
+{
+	m_lives -= 2;
+}
+
 void Gregor::lifeCheck()
 {
 	if (m_lives <= 0)

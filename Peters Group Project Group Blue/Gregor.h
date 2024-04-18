@@ -1,6 +1,6 @@
 // Name : Leo Bolaks
 // Login: C00299368
-// Work Done: loaded gregor 17-04-2024, added gregor movement 17-04-2024, added boundaries, fixed speed, set lives, set up collisions 18-04-2024
+// Work Done: loaded gregor 17-04-2024, added gregor movement 17-04-2024, added boundaries, rotatation, fixed speed, set lives, set up collisions 18-04-2024
 //
 #ifndef Gregor_HPP
 #define Gregor_HPP
@@ -53,6 +53,7 @@ public:
 	void update();
 
 	void takeAwayLife();
+	void takeAway2Lives();
 	void lifeCheck();
 
 	void move();

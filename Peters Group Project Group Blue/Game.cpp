@@ -126,6 +126,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	gregor.update();
 	smallAppleCollisions();
+	bigAppleCollisions();
 
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
@@ -225,6 +226,18 @@ void Game::smallAppleCollisions()
 		{
 			smallApples[i].setAliveFalse();
 			gregor.takeAwayLife();
+		}
+	}
+}
+
+void Game::bigAppleCollisions()
+{
+	for (int i = 0; i < MAX_BIG_APPLES; i++)
+	{
+		if (bigApples[i].getSprite().getGlobalBounds().intersects(gregor.getGregorHitbox().getGlobalBounds()))
+		{
+			bigApples[i].setAliveFalse();
+			gregor.takeAway2Lives();
 		}
 	}
 }

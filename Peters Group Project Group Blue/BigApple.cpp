@@ -45,25 +45,25 @@ void BigApple::spawn()
 	{
 	case NORTH_BIG_APPLE: // above screen
 	{
-		yRespawn = 0 - m_texture.getSize().y * m_scale / 2; // height of apple
+		yRespawn = 0 - m_texture.getSize().y * m_scale / 2 - 10; // height of apple
 		xRespawn = static_cast<float>(rand() % static_cast<int>(SCREEN_WIDTH_BIG_APPLE)); // random position on x axis
 		break;
 	}
 	case SOUTH_BIG_APPLE:
 	{
-		yRespawn = SCREEN_HEIGHT_BIG_APPLE + m_texture.getSize().y * m_scale / 2;
+		yRespawn = SCREEN_HEIGHT_BIG_APPLE + m_texture.getSize().y * m_scale / 2 + 10;
 		xRespawn = static_cast<float>(rand() % static_cast<int>(SCREEN_WIDTH_BIG_APPLE));
 		break;
 	}
 	case EAST_BIG_APPLE:
 	{
-		xRespawn = SCREEN_WIDTH_BIG_APPLE + m_texture.getSize().x * m_scale / 2;
+		xRespawn = SCREEN_WIDTH_BIG_APPLE + m_texture.getSize().x * m_scale / 2 + 10;
 		yRespawn = static_cast<float>(rand() % static_cast<int>(SCREEN_HEIGHT_BIG_APPLE));
 		break;
 	}
 	case WEST_BIG_APPLE:
 	{
-		xRespawn = 0 - m_texture.getSize().x * m_scale / 2;
+		xRespawn = 0 - m_texture.getSize().x * m_scale / 2 - 10;
 		yRespawn = static_cast<float>(rand() % static_cast<int>(SCREEN_HEIGHT_BIG_APPLE));
 		break;
 	}
@@ -110,4 +110,9 @@ void BigApple::respawn(sf::Vector2f t_gregorPosition)
 	setLine(t_gregorPosition);
 	m_bigAppleAlive = true;
 	m_reflected = false;
+}
+
+void BigApple::setAliveFalse()
+{
+	m_bigAppleAlive = false;
 }

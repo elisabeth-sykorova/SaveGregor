@@ -1,6 +1,6 @@
 // Name : Leo Bolaks
 // Login: C00299368
-// Work Done: set up sprite, set up sprite spawn, movement, and line following Gregor
+// Work Done: set up sprite, set up sprite spawn, movement, and line following Gregor, respawn, collisions
 //
 
 #ifndef BigApple_HPP
@@ -45,6 +45,8 @@ public:
 	void move();
 
 	void respawn(sf::Vector2f t_gregorPosition);
+
+	void setAliveFalse();
 
 
 

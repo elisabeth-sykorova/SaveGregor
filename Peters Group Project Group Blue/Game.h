@@ -43,6 +43,7 @@ private:
 	void setupMouseDot();
 
 	void smallAppleCollisions();
+	void bigAppleCollisions();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
