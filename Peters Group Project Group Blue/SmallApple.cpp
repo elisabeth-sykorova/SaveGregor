@@ -22,7 +22,6 @@ void SmallApple::loadSmallApple()
 	m_sprite.setOrigin(sf::Vector2f(m_texture.getSize().x * m_scale / 2,
 									m_texture.getSize().y * m_scale / 2)); // origin in the centre of apple
 	std::cout << "Origin x: " << m_sprite.getOrigin().x << " y:" << m_sprite.getOrigin().y << std::endl;
-	m_sprite.setPosition(m_position);
 	m_sprite.setScale(m_scale, m_scale);
 }
 
@@ -65,7 +64,8 @@ void SmallApple::spawn()
 		}
 		}
 
-		m_sprite.setPosition(xRespawn, yRespawn);
+		m_position = sf::Vector2f(xRespawn, yRespawn);
+		m_sprite.setPosition(m_position);
 		std::cout << "apple position set to x:" << xRespawn << " y:" << yRespawn << std::endl;
 
 }
@@ -84,9 +84,25 @@ void SmallApple::setLine(sf::Vector2f t_gregorPosition)
 
 void SmallApple::move()
 {
-	m_position += m_velocity;
+	m_position -= m_velocity;
 
 	m_sprite.setPosition(m_position);
 
 
+}
+
+void SmallApple::update(sf::Vector2f t_gregorPosition)
+{
+	move();
+	if (!m_smallAppleAlive)
+	{
+		respawn(t_gregorPosition);
+	}
+}
+
+void SmallApple::respawn(sf::Vector2f t_gregorPosition)
+{
+	spawn();
+	setLine(t_gregorPosition);
+	m_smallAppleAlive = true;
 }

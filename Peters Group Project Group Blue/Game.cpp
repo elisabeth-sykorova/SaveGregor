@@ -116,7 +116,7 @@ void Game::update(sf::Time t_deltaTime)
 
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
-		smallApples[index].move();
+		smallApples[index].update(gregor.getGregor().getPosition());
 	}
 }
 

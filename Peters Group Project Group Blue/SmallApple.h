@@ -27,6 +27,8 @@ class SmallApple
 	float m_lineLength;
 	sf::Vector2f m_velocity;
 
+	bool m_smallAppleAlive = false;
+
 
 public:
 	SmallApple();
@@ -36,6 +38,10 @@ public:
 	void spawn();
 	void setLine(sf::Vector2f t_gregorPosition);
 	void move();
+
+	void update(sf::Vector2f t_gregorPosition);
+
+	void respawn(sf::Vector2f t_gregorPosition);
 
 
 };

@@ -26,6 +26,9 @@ class Gregor
 	const int SW = 8;
 	int m_direction = NORTH;
 
+	const int GREGOR_SCREEN_WIDTH = 1200;
+	const int GREGOR_SCREEN_HEIGHT = 900;
+
 	float m_speed = 2.0f; // gregors speed
 	sf::Vector2f m_location;
 

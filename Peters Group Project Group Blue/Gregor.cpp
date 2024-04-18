@@ -36,6 +36,7 @@ void Gregor::move()
 
 	if (m_direction == NORTH)
 	{
+		m_gregorSprite.setRotation(0);
 		if (m_location.y > 200)
 		{
 			m_location.y -= m_speed;
@@ -43,6 +44,7 @@ void Gregor::move()
 	}
 	if (m_direction == NW)
 	{
+		m_gregorSprite.setRotation(-45);
 		if (m_location.y > 200)
 		{
 			m_location.y -= m_speed;
@@ -51,28 +53,33 @@ void Gregor::move()
 		{
 			m_location.x -= m_speed;
 		}
+		
 	}
 	if (m_direction == NE)
 	{
+		m_gregorSprite.setRotation(45);
 		if (m_location.y > 200)
 		{
 			m_location.y -= m_speed;
 		}
-		if (m_location.x < 1000)
+		if (m_location.x < GREGOR_SCREEN_WIDTH - 200)
 		{
 			m_location.x += m_speed;
 		}
+		
 	}
 	if (m_direction == SOUTH)
 	{
-		if (m_location.y < 700)
+		m_gregorSprite.setRotation(180);
+		if (m_location.y < GREGOR_SCREEN_HEIGHT - 200)
 		{
 			m_location.y += m_speed;
 		}
 	}
 	if (m_direction == SW)
 	{
-		if (m_location.y < 700)
+		m_gregorSprite.setRotation(-135);
+		if (m_location.y < GREGOR_SCREEN_HEIGHT - 200)
 		{
 			m_location.y += m_speed;
 		}
@@ -80,27 +87,32 @@ void Gregor::move()
 		{
 			m_location.x -= m_speed;
 		}
+		
 	}
 	if (m_direction == SE)
 	{
-		if (m_location.y < 700)
+		m_gregorSprite.setRotation(135);
+		if (m_location.y < GREGOR_SCREEN_WIDTH - 200)
 		{
 			m_location.y += m_speed;
 		}
-		if (m_location.x < 1000)
+		if (m_location.x < GREGOR_SCREEN_WIDTH - 200)
 		{
 			m_location.x += m_speed;
 		}
+		
 	}
 	if (m_direction == EAST)
 	{
-		if (m_location.x < 700)
+		m_gregorSprite.setRotation(90);
+		if (m_location.x < GREGOR_SCREEN_WIDTH - 200)
 		{
 			m_location.x += m_speed;
 		}
 	}
 	if (m_direction == WEST)
 	{
+		m_gregorSprite.setRotation(-90);
 		if (m_location.x > 200)
 		{
 			m_location.x -= m_speed;
