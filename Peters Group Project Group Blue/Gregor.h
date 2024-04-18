@@ -15,6 +15,8 @@ class Gregor
 	sf::Texture m_gregorTexture; // texture for gregor
 	sf::Sprite m_gregorSprite; // sprite for gregor
 
+	sf::RectangleShape m_gregorHitbox; // hitbox for gregor
+
 	// gregors directions
 	const int NORTH = 1;
 	const int SOUTH = 2;
@@ -42,6 +44,7 @@ public:
 	void loadGregor();
 
 	sf::Sprite getGregor(); // gets gregors sprite
+	sf::RectangleShape getGregorHitbox(); // gets gregors hitbox
 
 	void update();
 

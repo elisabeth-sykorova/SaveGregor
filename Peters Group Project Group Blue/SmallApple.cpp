@@ -94,6 +94,11 @@ void SmallApple::move()
 	}
 }
 
+void SmallApple::setAliveFalse()
+{
+	m_smallAppleAlive = false;
+}
+
 void SmallApple::update(sf::Vector2f t_gregorPosition)
 {
 	move();

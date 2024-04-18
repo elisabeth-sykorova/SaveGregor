@@ -41,6 +41,8 @@ private:
 	void setupFontAndText();
 	void setupSprite();
 
+	void smallAppleCollisions();
+
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
 	sf::Text m_welcomeMessage; // text used for message on screen

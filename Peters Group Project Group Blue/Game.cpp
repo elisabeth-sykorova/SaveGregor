@@ -113,6 +113,7 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 	gregor.update();
+	smallAppleCollisions();
 
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
@@ -126,11 +127,13 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
+	m_window.draw(gregor.getGregor());
+	m_window.draw(gregor.getGregorHitbox());
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
 		m_window.draw(smallApples[index].getSprite());
 	}
-	m_window.draw(gregor.getGregor());
+	
 	m_window.display();
 }
 
@@ -166,4 +169,15 @@ void Game::setupSprite()
 	}
 	m_logoSprite.setTexture(m_logoTexture);
 	m_logoSprite.setPosition(300.0f, 180.0f);
+}
+
+void Game::smallAppleCollisions()
+{
+	for (int i = 0; i < MAX_SMALL_APPLES; i++)
+	{
+		if (smallApples[i].getSprite().getGlobalBounds().intersects(gregor.getGregorHitbox().getGlobalBounds()))
+		{
+			smallApples[i].setAliveFalse();
+		}
+	}
 }

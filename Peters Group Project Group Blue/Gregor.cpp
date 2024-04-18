@@ -17,11 +17,23 @@ void Gregor::loadGregor()
 	m_gregorSprite.setScale(0.17, 0.17);
 	m_gregorSprite.setPosition(600, 450);
 
+	m_gregorHitbox.setSize(sf::Vector2f(70, 70));
+	m_gregorHitbox.setOrigin(35, 35);
+	m_gregorHitbox.setFillColor(sf::Color::Transparent);
+	m_gregorHitbox.setOutlineColor(sf::Color::Green);
+	m_gregorHitbox.setOutlineThickness(3);
+	m_gregorHitbox.setPosition(m_gregorSprite.getPosition());
+
 }
 
 sf::Sprite Gregor::getGregor()
 {
 	return m_gregorSprite;
+}
+
+sf::RectangleShape Gregor::getGregorHitbox()
+{
+	return m_gregorHitbox;
 }
 
 void Gregor::update()
@@ -119,6 +131,7 @@ void Gregor::move()
 		}
 	}
 	m_gregorSprite.setPosition(m_location);
+	m_gregorHitbox.setPosition(m_gregorSprite.getPosition());
 }
 
 void Gregor::randomMove()
