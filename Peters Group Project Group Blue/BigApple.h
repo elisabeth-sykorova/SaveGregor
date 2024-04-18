@@ -1,3 +1,8 @@
+// Name : Leo Bolaks
+// Login: C00299368
+// Work Done: set up sprite
+//
+
 #ifndef BigApple_HPP
 #define BigApple_HPP
 

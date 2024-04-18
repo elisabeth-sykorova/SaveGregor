@@ -8,7 +8,7 @@ BigApple::BigApple()
 
 void BigApple::loadBigApple()
 {
-	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\smallApple.png"))
+	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\bigApple.png"))
 	{
 		std::cout << "problem loading small apple texture" << std::endl;
 	}
@@ -28,7 +28,6 @@ sf::Sprite BigApple::getSprite()
 
 void BigApple::spawn()
 {
-
 	int side = rand() % 4;
 	float xRespawn = 0.0f;
 	float yRespawn = 0.0f;
@@ -61,6 +60,6 @@ void BigApple::spawn()
 	}
 	}
 
-	m_sprite.setPosition(xRespawn, yRespawn);
-	std::cout << "apple position set to x:" << xRespawn << " y:" << yRespawn << std::endl;
+	m_position = sf::Vector2f(xRespawn, yRespawn);
+	m_sprite.setPosition(m_position);
 }

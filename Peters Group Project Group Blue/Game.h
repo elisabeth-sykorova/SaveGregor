@@ -54,8 +54,10 @@ private:
 	// small apple
 	
 	static const int MAX_SMALL_APPLES = 3;
+	static const int MAX_BIG_APPLES = 2;
 	SmallApple smallApples[MAX_SMALL_APPLES];
 	Gregor gregor;
+	BigApple bigApples[MAX_BIG_APPLES];
 
 	// mouse point
 	sf::Vector2f m_mouseEndVector;

@@ -90,7 +90,6 @@ void Game::processEvents()
 		if (sf::Event::MouseMoved == newEvent.type) // user pressed a mouse button 
 		{
 			processMouseMove(newEvent);
-			std::cout << "mouse released " << std::endl;
 		}
 		if (sf::Event::MouseButtonReleased == newEvent.type)
 		{
@@ -195,8 +194,6 @@ void Game::setupMouseDot()
 void Game::processMouseMove(sf::Event t_event)
 {
 	m_mouseEndVector.x = static_cast<float>(t_event.mouseMove.x);
-	std::cout << m_mouseEndVector.x << std::endl;
-	std::cout << m_mouseEndVector.y << std::endl;
 	m_mouseEndVector.y = static_cast<float>(t_event.mouseMove.y);
 	m_mouseDot.setPosition(m_mouseEndVector); // circle shape with the location of mouse to use for intersecting
 }
