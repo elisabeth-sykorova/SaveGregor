@@ -178,6 +178,7 @@ void Game::smallAppleCollisions()
 		if (smallApples[i].getSprite().getGlobalBounds().intersects(gregor.getGregorHitbox().getGlobalBounds()))
 		{
 			smallApples[i].setAliveFalse();
+			gregor.takeAwayLife();
 		}
 	}
 }

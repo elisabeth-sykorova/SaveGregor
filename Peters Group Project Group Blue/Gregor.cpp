@@ -38,8 +38,25 @@ sf::RectangleShape Gregor::getGregorHitbox()
 
 void Gregor::update()
 {
-	move();
-	randomMove();
+	if (m_gregorAlive)
+	{
+		move();
+		randomMove();
+		lifeCheck();
+	}
+}
+
+void Gregor::takeAwayLife()
+{
+	m_lives--;
+}
+
+void Gregor::lifeCheck()
+{
+	if (m_lives <= 0)
+	{
+		m_gregorAlive = false;
+	}
 }
 
 void Gregor::move()
