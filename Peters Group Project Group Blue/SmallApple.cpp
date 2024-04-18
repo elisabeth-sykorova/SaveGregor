@@ -90,8 +90,8 @@ void SmallApple::move()
 	}
 	else if (m_reflected)
 	{
-		m_position.x += m_velocity.x * 2;
-		m_position.y += m_velocity.y * 2;
+		m_position.x += m_velocity.x * 3;
+		m_position.y += m_velocity.y * 3;
 	}
 
 	m_sprite.setPosition(m_position);

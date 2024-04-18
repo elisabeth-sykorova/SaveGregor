@@ -146,12 +146,8 @@ void Game::render()
 	{
 		m_window.draw(smallApples[index].getSprite());
 	}
-<<<<<<< HEAD
 	m_window.draw(m_mouseDot);
 	m_window.draw(gregor.getGregor());
-=======
-	
->>>>>>> 57853883084c6d257172e85dcdbc95ab52f83d4b
 	m_window.display();
 }
 
@@ -189,7 +185,6 @@ void Game::setupSprite()
 	m_logoSprite.setPosition(300.0f, 180.0f);
 }
 
-<<<<<<< HEAD
 void Game::setupMouseDot()
 {
 	m_mouseDot.setRadius(1.0);
@@ -217,8 +212,6 @@ void Game::processMouseReleased()
 	}
 }
 
-
-=======
 void Game::smallAppleCollisions()
 {
 	for (int i = 0; i < MAX_SMALL_APPLES; i++)
@@ -230,4 +223,4 @@ void Game::smallAppleCollisions()
 		}
 	}
 }
->>>>>>> 57853883084c6d257172e85dcdbc95ab52f83d4b
+
