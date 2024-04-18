@@ -4,6 +4,7 @@
 Gregor::Gregor()
 {
 	loadGregor();
+	loadHearts();
 }
 
 void Gregor::loadGregor()
@@ -169,4 +170,37 @@ void Gregor::randomMove()
 		m_countdown = 0; // sets countdown to 0
 	}
 
+}
+
+void Gregor::loadHearts()
+{
+	if (!m_heartsTexture.loadFromFile("ASSETS\\IMAGES\\hearts_spritesheet.png"))
+	{
+		std::cout << "Error loading hearts" << std::endl;
+	}
+
+	m_heartsSprite.setTexture(m_heartsTexture);
+	m_heartsSprite.setScale(0.17f, 0.17f);
+	m_heartsSprite.setPosition(0, GREGOR_SCREEN_HEIGHT - 50); // corner of the screen
+	m_heartsSprite.setTextureRect(sf::IntRect(0, 0, 760, 275));
+
+}
+
+sf::Sprite Gregor::getHearts()
+{
+	return m_heartsSprite;
+}
+
+void Gregor::animateHearts()
+{
+	m_hFrameCounter += m_hFrameIncrement;
+	m_hCurrentFrame = static_cast<int>(m_hFrameCounter);
+	
+	if (m_hCurrentFrame > 3)
+	{
+		m_hCurrentFrame = 0;
+		m_hFrameCounter = 0.0f;
+	}
+
+	m_heartsSprite.setTextureRect(sf::IntRect(0 + 760 * m_hCurrentFrame, 0, 760, 275 + 275 * m_hCurrentFrame));
 }

@@ -127,6 +127,7 @@ void Game::update(sf::Time t_deltaTime)
 	gregor.update();
 	smallAppleCollisions();
 	bigAppleCollisions();
+	gregor.animateHearts();
 
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
@@ -156,6 +157,7 @@ void Game::render()
 	}
 	m_window.draw(m_mouseDot);
 	m_window.draw(gregor.getGregor());
+	m_window.draw(gregor.getHearts());
 	m_window.display();
 }
 

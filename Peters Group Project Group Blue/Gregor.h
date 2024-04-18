@@ -41,6 +41,17 @@ class Gregor
 
 	bool m_gregorAlive = true;
 
+	// hearts
+	sf::Texture m_heartsTexture;
+	sf::Sprite m_heartsSprite;
+	sf::Vector2f m_spriteDimensions{ 3040,1100 };
+
+	int m_hCurrentFrame = 0;
+	float m_hFrameIncrement = 0.2;
+	float m_hFrameCounter = 0.0f;
+	int m_textureRow = 0;
+
+
 
 public:
 	Gregor();
@@ -58,6 +69,11 @@ public:
 
 	void move();
 	void randomMove();
+
+	// hearts
+	void loadHearts();
+	sf::Sprite getHearts();
+	void animateHearts();
 
 
 };
