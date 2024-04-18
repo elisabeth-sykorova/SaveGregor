@@ -1,13 +1,15 @@
 // Name : Leo Bolaks
 // Login: C00299368
-// Work Done: set up sprite, set up sprite spawn, movement, and line following Gregor, respawn, collisions
+// Work Done: set up sprite, set up sprite spawn, movement, and line following Gregor, respawn, collisions, deflecting,
 //
 
 #ifndef BigApple_HPP
 #define BigApple_HPP
 
 #include <SFML/Graphics.hpp>
-
+/// <summary>
+/// constants for spawn sides and the size of the screen
+/// </summary>
 const int NORTH_BIG_APPLE = 0;
 const int SOUTH_BIG_APPLE = 1;
 const int EAST_BIG_APPLE = 2;
@@ -18,18 +20,20 @@ const int SCREEN_HEIGHT_BIG_APPLE = 900;
 
 class BigApple
 {
-	sf::Texture m_texture;
-	sf::Vector2f m_position{ 0.0f,0.0f };
-	sf::Sprite m_sprite;
-	float m_scale = 0.13f;
-	float m_speed = 2.0f;
-	float m_lineLength;
-	sf::Vector2f m_velocity;
+	sf::Texture m_texture; // texture for apple
+	sf::Vector2f m_position{ 0.0f,0.0f }; // position of apple
+	sf::Sprite m_sprite; // sprite for apple
+	float m_scale = 0.13f; // scaled down
+	float m_speed = 2.0f; // speed of apple
+	float m_lineLength; // line along which apple moves
+	sf::Vector2f m_velocity; // velocity at which it moves
+
+	int m_counter = 0; // click counter
 	
 
-	bool m_bigAppleAlive = false;
+	bool m_bigAppleAlive = false; // if the apple is alive
 
-	bool m_reflected = false;
+	bool m_reflected = false; // if the apple is reflected 
 
 
 public:
@@ -47,6 +51,8 @@ public:
 	void respawn(sf::Vector2f t_gregorPosition);
 
 	void setAliveFalse();
+
+	void deflectCounter();
 
 
 

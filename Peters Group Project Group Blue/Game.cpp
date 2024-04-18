@@ -216,6 +216,13 @@ void Game::processMouseReleased()
 			smallApples[index].setReflectTrue();
 		}
 	}
+	for (int i = 0; i < MAX_BIG_APPLES; i++)
+	{
+		if (m_mouseDot.getGlobalBounds().intersects(bigApples[i].getSprite().getGlobalBounds()))
+		{
+			bigApples[i].deflectCounter();
+		}
+	}
 }
 
 void Game::smallAppleCollisions()

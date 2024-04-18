@@ -1,14 +1,14 @@
-/// <summary>
-/// author Pete Lowe May 2019
-/// you need to change the above line or lose marks
-/// </summary>
+// Name: Leo Bolaks
+// Login: C00299368
+// Work Done: 
+//----------------------------------------------------------------------------------------------------------------
+// Name: Elisabeth Sykorova
+// Login: C00301316
+// Work Done: Mouse move/ released functions, added mouse dot circle shape,
+
 #ifndef GAME_HPP
 #define GAME_HPP
-/// <summary>
-/// include guards used so we don't process this file twice
-/// same as #pragma once
-/// Don't forget the endif at the bottom
-/// </summary>
+
 #include <SFML/Graphics.hpp>
 
 #include "Gregor.h"

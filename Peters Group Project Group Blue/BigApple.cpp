@@ -20,12 +20,18 @@ void BigApple::loadBigApple()
 	m_sprite.setPosition(m_position);
 	m_sprite.setScale(m_scale, m_scale);
 }
-
+/// <summary>
+/// returns sprite
+/// </summary>
+/// <returns></returns>
 sf::Sprite BigApple::getSprite()
 {
 	return m_sprite;
 }
-
+/// <summary>
+/// update for the big apples function
+/// </summary>
+/// <param name="t_gregorPosition"></param>
 void BigApple::update(sf::Vector2f t_gregorPosition)
 {
 	move();
@@ -34,7 +40,10 @@ void BigApple::update(sf::Vector2f t_gregorPosition)
 		respawn(t_gregorPosition);
 	}
 }
-
+/// <summary>
+/// random spawn for big apples, where first it generates the side it spawns on and then it generates a random number 
+/// to spawn it along the line on the x or y axis
+/// </summary>
 void BigApple::spawn()
 {
 	int side = rand() % 4;
@@ -72,7 +81,10 @@ void BigApple::spawn()
 	m_position = sf::Vector2f(xRespawn, yRespawn);
 	m_sprite.setPosition(m_position);
 }
-
+/// <summary>
+/// Draws a line once from the apple to gregor, only called once when the apple is respawned
+/// </summary>
+/// <param name="t_gregorPosition"></param>
 void BigApple::setLine(sf::Vector2f t_gregorPosition)
 {
 	m_velocity = m_sprite.getPosition() - t_gregorPosition;
@@ -83,7 +95,9 @@ void BigApple::setLine(sf::Vector2f t_gregorPosition)
 
 	m_velocity *= m_speed;
 }
-
+/// <summary>
+/// moves apple and reverses its tragectory if it is reflected, constantly called in update
+/// </summary>
 void BigApple::move()
 {
 	if (!m_reflected)
@@ -103,16 +117,34 @@ void BigApple::move()
 		m_bigAppleAlive = false;
 	}
 }
-
+/// <summary>
+/// if the apple reaches edge of screen it will die and then respawn
+/// </summary>
+/// <param name="t_gregorPosition"></param>
 void BigApple::respawn(sf::Vector2f t_gregorPosition)
 {
 	spawn();
 	setLine(t_gregorPosition);
 	m_bigAppleAlive = true;
 	m_reflected = false;
+	m_counter = 0;
 }
-
+/// <summary>
+/// sets alive to false
+/// </summary>
 void BigApple::setAliveFalse()
 {
 	m_bigAppleAlive = false;
+}
+/// <summary>
+/// acts as a double click and will only set reflected to true if user clicks 2 times in total
+/// </summary>
+void BigApple::deflectCounter()
+{
+	m_counter++;
+	if (m_counter == 2)
+	{
+		m_reflected = true;
+	}
+	std::cout << "" << m_counter << std::endl;
 }
