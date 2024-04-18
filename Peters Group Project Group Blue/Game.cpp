@@ -28,6 +28,7 @@ Game::Game() :
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
 		smallApples[index].spawn();
+		smallApples[index].setLine(gregor.getGregor().getPosition());
 	}
 }
 
@@ -112,6 +113,11 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 	gregor.update();
+
+	for (int index = 0; index < MAX_SMALL_APPLES; index++)
+	{
+		smallApples[index].move();
+	}
 }
 
 /// <summary>
@@ -122,7 +128,7 @@ void Game::render()
 	m_window.clear(sf::Color::White);
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
-		m_window.draw(smallApples[0].getSprite());
+		m_window.draw(smallApples[index].getSprite());
 	}
 	m_window.draw(gregor.getGregor());
 	m_window.display();

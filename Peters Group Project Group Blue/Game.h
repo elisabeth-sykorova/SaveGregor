@@ -50,7 +50,7 @@ private:
 
 	// small apple
 	
-	static const int MAX_SMALL_APPLES = 1;
+	static const int MAX_SMALL_APPLES = 3;
 	SmallApple smallApples[MAX_SMALL_APPLES];
 	Gregor gregor;
 

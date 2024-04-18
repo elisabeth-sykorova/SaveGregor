@@ -22,7 +22,10 @@ class SmallApple
 	sf::Texture m_texture;
 	sf::Vector2f m_position{ 0.0f,0.0f };
 	sf::Sprite m_sprite;
-	float m_scale = 0.17;
+	float m_scale = 0.17f;
+	float m_speed = 2.5f;
+	float m_lineLength;
+	sf::Vector2f m_velocity;
 
 
 public:
@@ -31,6 +34,8 @@ public:
 	void loadSmallApple();
 	sf::Sprite getSprite();
 	void spawn();
+	void setLine(sf::Vector2f t_gregorPosition);
+	void move();
 
 
 };
