@@ -88,7 +88,10 @@ void SmallApple::move()
 
 	m_sprite.setPosition(m_position);
 
-
+	if (m_position.x > SCREEN_WIDTH_SMALL_APPLE + 100 || m_position.x < -100 || m_position.y > SCREEN_HEIGHT_SMALL_APPLE + 100 || m_position.y < -100)
+	{
+		m_smallAppleAlive = false;
+	}
 }
 
 void SmallApple::update(sf::Vector2f t_gregorPosition)

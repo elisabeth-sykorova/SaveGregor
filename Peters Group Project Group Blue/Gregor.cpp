@@ -37,7 +37,7 @@ void Gregor::move()
 	if (m_direction == NORTH)
 	{
 		m_gregorSprite.setRotation(0);
-		if (m_location.y > 200)
+		if (m_location.y > 150)
 		{
 			m_location.y -= m_speed;
 		}
@@ -45,11 +45,11 @@ void Gregor::move()
 	if (m_direction == NW)
 	{
 		m_gregorSprite.setRotation(-45);
-		if (m_location.y > 200)
+		if (m_location.y > 150)
 		{
 			m_location.y -= m_speed;
 		}
-		if (m_location.x > 200)
+		if (m_location.x > 150)
 		{
 			m_location.x -= m_speed;
 		}
@@ -58,11 +58,11 @@ void Gregor::move()
 	if (m_direction == NE)
 	{
 		m_gregorSprite.setRotation(45);
-		if (m_location.y > 200)
+		if (m_location.y > 150)
 		{
 			m_location.y -= m_speed;
 		}
-		if (m_location.x < GREGOR_SCREEN_WIDTH - 200)
+		if (m_location.x < GREGOR_SCREEN_WIDTH - 150)
 		{
 			m_location.x += m_speed;
 		}
@@ -71,7 +71,7 @@ void Gregor::move()
 	if (m_direction == SOUTH)
 	{
 		m_gregorSprite.setRotation(180);
-		if (m_location.y < GREGOR_SCREEN_HEIGHT - 200)
+		if (m_location.y < GREGOR_SCREEN_HEIGHT - 150)
 		{
 			m_location.y += m_speed;
 		}
@@ -79,11 +79,11 @@ void Gregor::move()
 	if (m_direction == SW)
 	{
 		m_gregorSprite.setRotation(-135);
-		if (m_location.y < GREGOR_SCREEN_HEIGHT - 200)
+		if (m_location.y < GREGOR_SCREEN_HEIGHT - 150)
 		{
 			m_location.y += m_speed;
 		}
-		if (m_location.x > 200)
+		if (m_location.x > 150)
 		{
 			m_location.x -= m_speed;
 		}
@@ -92,11 +92,11 @@ void Gregor::move()
 	if (m_direction == SE)
 	{
 		m_gregorSprite.setRotation(135);
-		if (m_location.y < GREGOR_SCREEN_HEIGHT - 200)
+		if (m_location.y < GREGOR_SCREEN_HEIGHT - 150)
 		{
 			m_location.y += m_speed;
 		}
-		if (m_location.x < GREGOR_SCREEN_WIDTH - 200)
+		if (m_location.x < GREGOR_SCREEN_WIDTH - 150)
 		{
 			m_location.x += m_speed;
 		}
@@ -105,7 +105,7 @@ void Gregor::move()
 	if (m_direction == EAST)
 	{
 		m_gregorSprite.setRotation(90);
-		if (m_location.x < GREGOR_SCREEN_WIDTH - 200)
+		if (m_location.x < GREGOR_SCREEN_WIDTH - 150)
 		{
 			m_location.x += m_speed;
 		}
@@ -113,7 +113,7 @@ void Gregor::move()
 	if (m_direction == WEST)
 	{
 		m_gregorSprite.setRotation(-90);
-		if (m_location.x > 200)
+		if (m_location.x > 150)
 		{
 			m_location.x -= m_speed;
 		}
@@ -123,7 +123,7 @@ void Gregor::move()
 
 void Gregor::randomMove()
 {
-	if (m_countdown != COUNTDOWN_DURATION) // constant is set to 120 to have a 2 second timer
+	if (m_countdown != COUNTDOWN_DURATION) // constant is set to 30 to have a 0.5 second timer
 	{
 		m_countdown++;
 	}

@@ -29,10 +29,10 @@ class Gregor
 	const int GREGOR_SCREEN_WIDTH = 1200;
 	const int GREGOR_SCREEN_HEIGHT = 900;
 
-	float m_speed = 2.0f; // gregors speed
+	float m_speed = 3.0f; // gregors speed
 	sf::Vector2f m_location;
 
-	const float COUNTDOWN_DURATION = 120.0f;
+	const float COUNTDOWN_DURATION = 30.0f;
 	float m_countdown = 0.0f;
 
 
