@@ -2,6 +2,13 @@
 // Login: C00299368
 // Work Done: loaded gregor 17-04-2024, added gregor movement 17-04-2024, added boundaries, rotatation, fixed speed, set lives, set up collisions 18-04-2024
 //
+//------------------------------
+// Name: Elisabeth Sykorova
+// Login: C00301316
+// Work Done: loaded heart sprites, animated hearts, hearts state switching based on health 18-04-2024
+//
+
+
 #ifndef Gregor_HPP
 #define Gregor_HPP
 
@@ -46,10 +53,12 @@ class Gregor
 	sf::Sprite m_heartsSprite;
 	sf::Vector2f m_spriteDimensions{ 3040,1100 };
 
-	int m_hCurrentFrame = 0;
-	float m_hFrameIncrement = 0.2;
-	float m_hFrameCounter = 0.0f;
-	int m_textureRow = 0;
+	// animating hearts
+	int m_hCurrentFrame = 0; // tracks the current frame, is used to multiply coordinates of texture rect
+	float m_hFrameIncrement = 0.2; // increments the frame counter with each update
+	float m_hFrameCounter = 0.0f; // keeps the float count of current frame
+
+	float m_scaleHearts = 0.17;
 
 
 

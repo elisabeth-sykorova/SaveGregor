@@ -49,12 +49,26 @@ void Gregor::update()
 
 void Gregor::takeAwayLife()
 {
-	m_lives--;
+	if (m_lives >= 1)
+	{
+		m_lives--;
+	}
+	else
+	{
+		m_lives = 0;
+	}
 }
 
 void Gregor::takeAway2Lives()
 {
-	m_lives -= 2;
+	if (m_lives >= 2) // boundaries so that lives dont go past 0
+	{
+		m_lives -= 2;
+	}
+	else
+	{
+		m_lives = 0;
+	}
 }
 
 void Gregor::lifeCheck()
@@ -180,9 +194,10 @@ void Gregor::loadHearts()
 	}
 
 	m_heartsSprite.setTexture(m_heartsTexture);
-	m_heartsSprite.setScale(0.17f, 0.17f);
-	m_heartsSprite.setPosition(0, GREGOR_SCREEN_HEIGHT - 50); // corner of the screen
+	m_heartsSprite.setScale(m_scaleHearts, m_scaleHearts);
+	m_heartsSprite.setPosition(10, GREGOR_SCREEN_HEIGHT - 50); // corner of the screen
 	m_heartsSprite.setTextureRect(sf::IntRect(0, 0, 760, 275));
+
 
 }
 
@@ -193,14 +208,39 @@ sf::Sprite Gregor::getHearts()
 
 void Gregor::animateHearts()
 {
+	switch (m_lives)
+	{
+	case 3:
+	{
+		m_hFrameIncrement = 0.2f; // changes speed of animation based on health state
+		break;
+	}
+	case 2:
+	{
+		m_hFrameIncrement = 0.4f;
+		break;
+	}
+	case 1:
+	{
+		m_hFrameIncrement = 0.6f;
+		break;
+	}
+	case 0:
+	{
+		m_hFrameIncrement = 0.4;
+		break;
+	}
+	}
+
 	m_hFrameCounter += m_hFrameIncrement;
 	m_hCurrentFrame = static_cast<int>(m_hFrameCounter);
 	
-	if (m_hCurrentFrame > 3)
+	if (m_hCurrentFrame > 3) // 4 frames, 0-3 only 
 	{
 		m_hCurrentFrame = 0;
 		m_hFrameCounter = 0.0f;
 	}
+	m_heartsSprite.setTextureRect(sf::IntRect(0 + 760 * m_hCurrentFrame, 0 + 275 * (3-m_lives), 760, 275 + 275 * (3-m_lives))); // animates the texture and changes the row based on the health status
 
-	m_heartsSprite.setTextureRect(sf::IntRect(0 + 760 * m_hCurrentFrame, 0, 760, 275 + 275 * m_hCurrentFrame));
+	// BUG NOTE: SOME STATES TEXTURE RECTS DO NOT WORK PROPERLY - IT SHOULD ALWAYS ONLY SHOW ONE ROW
 }
