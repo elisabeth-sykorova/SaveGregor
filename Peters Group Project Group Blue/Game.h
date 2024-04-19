@@ -74,7 +74,7 @@ private:
 	void processMouseMove(sf::Event t_event);
 	void processMouseReleased();
 
-	GameStates m_gameState = GameStates::Game;
+	GameStates m_gameState = GameStates::Menu;
 
 };
 
