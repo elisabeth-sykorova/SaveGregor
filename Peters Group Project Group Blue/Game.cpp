@@ -140,6 +140,10 @@ void Game::update(sf::Time t_deltaTime)
 			bigApples[i].update(gregor.getGregor().getPosition());
 		}
 	}
+	if (m_gameState == GameStates::Menu)
+	{
+		menu.animateSprites();
+	}
 }
 
 /// <summary>
@@ -150,8 +154,8 @@ void Game::render()
 	m_window.clear(sf::Color::White);
 	if (m_gameState == GameStates::Menu)
 	{
-		m_window.draw(menu.getSaveGregorText());
-		m_window.draw(menu.getSaveGregorSprite());
+		/*m_window.draw(menu.getSaveGregorText());*/
+		m_window.draw(menu.getStartGameSprite());
 	}
 	if (m_gameState == GameStates::Game)
 	{

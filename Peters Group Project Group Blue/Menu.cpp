@@ -23,22 +23,59 @@ void Menu::loadMenu()
 
 void Menu::loadSprites()
 {
-	if (!m_saveGregorTexture.loadFromFile("ASSETS\\IMAGES\\save_gregor.png"))
+	if (!m_startGameTexture.loadFromFile("ASSETS\\IMAGES\\start_game_button.png"))
 	{
-		std::cout << "Error loading gregor texture" << std::endl;
+		std::cout << "Error loading start button textures" << std::endl;
 	}
 
-	m_saveGregorSprite.setTexture(m_saveGregorTexture);
-	m_saveGregorSprite.setOrigin(468, 188);
-	m_saveGregorSprite.setPosition(1200/2, 900/2);
-	m_saveGregorSprite.setScale(0.5, 0.5);
+	m_startGameSprite.setTexture(m_startGameTexture);
+	m_startGameSprite.setOrigin(m_saveGregorXY.x/2, m_saveGregorXY.y/2);
+	m_startGameSprite.setPosition(MENU_SCREEN_WIDTH/2, MENU_SCREEN_HEIGHT/2);
+	m_startGameSprite.setScale(0.5, 0.5);
 
-	m_saveGregorSprite.setTextureRect(sf::IntRect(0, 0, 936, 376));
+	m_currentStartButton = START_GAME;
+	m_startGameSprite.setTextureRect(sf::IntRect(0, 0, m_startButtonXY.x, m_startButtonXY.y));
 }
 
-sf::Sprite Menu::getSaveGregorSprite()
+sf::Sprite Menu::getStartGameSprite()
 {
-	return m_saveGregorSprite;
+	return m_startGameSprite;
+}
+
+void Menu::animateSprites()
+{
+	if (m_currentStartButton != m_newStartButton) // if the start button state has been changed
+	{
+		if(m_newStartButton == START_GAME)
+		{
+			m_startButtonXY = m_saveGregorXY; // start button says save gregor (start state)
+			m_startGameSprite.setOrigin(m_saveGregorXY.x / 2, m_saveGregorXY.y / 2);
+		}
+		else
+		{
+			m_startButtonXY = m_tryAgainXY; // start button says try again (restart state)
+			m_startGameSprite.setOrigin(m_tryAgainXY.x / 2, m_tryAgainXY.y / 2);
+		}
+
+		m_currentStartButton = m_newStartButton;
+	}
+	m_lastFrame = m_currentFrame;
+	m_frameCounter += m_frameIncrement;
+	m_currentFrame = static_cast<int>(m_frameCounter) % NO_BUTTON_FRAMES;
+
+	if (m_lastFrame != m_currentFrame) // animate the button
+	{
+		m_startGameSprite.setTextureRect(sf::IntRect(m_currentFrame * m_startButtonXY.x, 0 + m_currentStartButton * m_startButtonXY.y, m_startButtonXY.x, m_startButtonXY.y));
+	}
+
+}
+
+/// <summary>
+/// set the state of the start button, 0 = START GAME, 1 = RESTART GAME
+/// </summary>
+void Menu::setStartButtonState(int t_startButtonState)
+{
+	m_newStartButton = t_startButtonState;
 }
 
 sf::Text Menu::getSaveGregorText()

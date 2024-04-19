@@ -57,7 +57,8 @@ class Gregor
 	int m_hCurrentFrame = 0; // tracks the current frame, is used to multiply coordinates of texture rect
 	float m_hFrameIncrement = 0.2; // increments the frame counter with each update
 	float m_hFrameCounter = 0.0f; // keeps the float count of current frame
-	int m_lastFrame;
+	int m_hLastFrame;
+	const int NO_HEART_FRAMES = 4;
 
 	float m_scaleHearts = 0.17;
 

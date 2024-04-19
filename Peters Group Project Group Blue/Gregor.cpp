@@ -214,11 +214,11 @@ void Gregor::animateHearts()
 	{
 		m_hFrameIncrement = 0.2f; // changes speed of animation based on health state
 
-		m_lastFrame = m_hCurrentFrame;
+		m_hLastFrame = m_hCurrentFrame;
 		m_hFrameCounter += m_hFrameIncrement;
-		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % 4;
+		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % NO_HEART_FRAMES;
 
-		if (m_lastFrame != m_hCurrentFrame)
+		if (m_hLastFrame != m_hCurrentFrame)
 		{
 			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 0, 760, 275));
 		}
@@ -228,11 +228,11 @@ void Gregor::animateHearts()
 	{
 		m_hFrameIncrement = 0.4f;
 
-		m_lastFrame = m_hCurrentFrame;
+		m_hLastFrame = m_hCurrentFrame;
 		m_hFrameCounter += m_hFrameIncrement;
-		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % 4;
+		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % NO_HEART_FRAMES;
 
-		if (m_lastFrame != m_hCurrentFrame)
+		if (m_hLastFrame != m_hCurrentFrame)
 		{
 			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 275, 760, 275));
 		}
@@ -243,11 +243,11 @@ void Gregor::animateHearts()
 	{
 		m_hFrameIncrement = 0.6f;
 
-		m_lastFrame = m_hCurrentFrame;
+		m_hLastFrame = m_hCurrentFrame;
 		m_hFrameCounter += m_hFrameIncrement;
-		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % 4;
+		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % NO_HEART_FRAMES;
 
-		if (m_lastFrame != m_hCurrentFrame)
+		if (m_hLastFrame != m_hCurrentFrame)
 		{
 			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 550, 760, 275));
 		}
@@ -258,11 +258,11 @@ void Gregor::animateHearts()
 	{
 		m_hFrameIncrement = 0.4;
 
-		m_lastFrame = m_hCurrentFrame;
+		m_hLastFrame = m_hCurrentFrame;
 		m_hFrameCounter += m_hFrameIncrement;
-		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % 4;
+		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % NO_HEART_FRAMES;
 
-		if (m_lastFrame != m_hCurrentFrame)
+		if (m_hLastFrame != m_hCurrentFrame)
 		{
 			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 825, 760, 275));
 		}
