@@ -1,6 +1,10 @@
 // Name: Elisabeth Sykorova
 // Login: C00301316
-// Work done: loaded, random spawn behind borders - 17.4.
+// Work done: loaded, random spawn behind borders - 17.4, reflection, move, set line
+//------------------------------------------------------------------------------------
+// Name: Leo Bolaks
+// Login: C00299368
+// WOrk Done: helped debug, added respawn, added update,
 
 
 
