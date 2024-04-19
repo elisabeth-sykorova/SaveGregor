@@ -195,7 +195,7 @@ void Gregor::loadHearts()
 
 	m_heartsSprite.setTexture(m_heartsTexture);
 	m_heartsSprite.setScale(m_scaleHearts, m_scaleHearts);
-	m_heartsSprite.setPosition(10, GREGOR_SCREEN_HEIGHT - 50); // corner of the screen
+	m_heartsSprite.setPosition(10, GREGOR_SCREEN_HEIGHT - 100); // corner of the screen
 	m_heartsSprite.setTextureRect(sf::IntRect(0, 0, 760, 275));
 
 
