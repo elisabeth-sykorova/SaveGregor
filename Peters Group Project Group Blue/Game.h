@@ -20,7 +20,12 @@
 #include "Upgrades.h"
 #include "Menu.h"
 
-
+enum class GameStates
+{
+	Menu,
+	Game,
+	End
+};
 class Game
 {
 public:
