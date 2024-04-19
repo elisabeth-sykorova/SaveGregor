@@ -64,6 +64,7 @@ private:
 	SmallApple smallApples[MAX_SMALL_APPLES];
 	Gregor gregor;
 	BigApple bigApples[MAX_BIG_APPLES];
+	Menu menu;
 
 	// mouse point
 	sf::Vector2f m_mouseEndVector;
@@ -72,6 +73,8 @@ private:
 
 	void processMouseMove(sf::Event t_event);
 	void processMouseReleased();
+
+	GameStates m_gameState = GameStates::Game;
 
 };
 

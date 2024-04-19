@@ -124,18 +124,21 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-	gregor.update();
-	smallAppleCollisions();
-	bigAppleCollisions();
-	gregor.animateHearts();
+	if (m_gameState == GameStates::Game)
+	{
+		gregor.update();
+		smallAppleCollisions();
+		bigAppleCollisions();
+		gregor.animateHearts();
 
-	for (int index = 0; index < MAX_SMALL_APPLES; index++)
-	{
-		smallApples[index].update(gregor.getGregor().getPosition());
-	}
-	for (int i = 0; i < MAX_BIG_APPLES; i++)
-	{
-		bigApples[i].update(gregor.getGregor().getPosition());
+		for (int index = 0; index < MAX_SMALL_APPLES; index++)
+		{
+			smallApples[index].update(gregor.getGregor().getPosition());
+		}
+		for (int i = 0; i < MAX_BIG_APPLES; i++)
+		{
+			bigApples[i].update(gregor.getGregor().getPosition());
+		}
 	}
 }
 
@@ -145,19 +148,26 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	m_window.draw(gregor.getGregor());
-	m_window.draw(gregor.getGregorHitbox());
-	for (int index = 0; index < MAX_SMALL_APPLES; index++)
+	if (m_gameState == GameStates::Menu)
 	{
-		m_window.draw(smallApples[index].getSprite());
+		m_window.draw(menu.getSaveGregorText());
 	}
-	for (int i = 0; i < MAX_BIG_APPLES; i++)
+	if (m_gameState == GameStates::Game)
 	{
-		m_window.draw(bigApples[i].getSprite());
+		m_window.draw(gregor.getGregor());
+		m_window.draw(gregor.getGregorHitbox());
+		for (int index = 0; index < MAX_SMALL_APPLES; index++)
+		{
+			m_window.draw(smallApples[index].getSprite());
+		}
+		for (int i = 0; i < MAX_BIG_APPLES; i++)
+		{
+			m_window.draw(bigApples[i].getSprite());
+		}
+		m_window.draw(m_mouseDot);
+		m_window.draw(gregor.getGregor());
+		m_window.draw(gregor.getHearts());
 	}
-	m_window.draw(m_mouseDot);
-	m_window.draw(gregor.getGregor());
-	m_window.draw(gregor.getHearts());
 	m_window.display();
 }
 

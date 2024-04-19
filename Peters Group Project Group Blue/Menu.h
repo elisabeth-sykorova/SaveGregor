@@ -9,13 +9,16 @@
 
 class Menu
 {
-
+	sf::Font m_saveGregorFont; // font for main text
+	sf::Text m_saveGregorText; // text for main text
 
 
 public:
 	Menu();
 
 	void loadMenu();
+
+	sf::Text getSaveGregorText();
 
 
 };
