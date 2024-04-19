@@ -12,13 +12,20 @@ class Menu
 	sf::Font m_saveGregorFont; // font for main text
 	sf::Text m_saveGregorText; // text for main text
 
+	sf::Texture m_saveGregorTexture;
+	sf::Sprite m_saveGregorSprite;
+
 
 public:
 	Menu();
 
 	void loadMenu();
-
 	sf::Text getSaveGregorText();
+
+	// savee gregor
+	void loadSprites();
+	sf::Sprite getSaveGregorSprite();
+
 
 
 };

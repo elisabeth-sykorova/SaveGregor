@@ -151,6 +151,7 @@ void Game::render()
 	if (m_gameState == GameStates::Menu)
 	{
 		m_window.draw(menu.getSaveGregorText());
+		m_window.draw(menu.getSaveGregorSprite());
 	}
 	if (m_gameState == GameStates::Game)
 	{
