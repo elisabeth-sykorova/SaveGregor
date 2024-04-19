@@ -213,10 +213,12 @@ void Gregor::animateHearts()
 	case 3:
 	{
 		m_hFrameIncrement = 0.2f; // changes speed of animation based on health state
-		int lastFrame = m_hCurrentFrame;
+
+		m_lastFrame = m_hCurrentFrame;
 		m_hFrameCounter += m_hFrameIncrement;
 		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % 4;
-		if (lastFrame != m_hCurrentFrame)
+
+		if (m_lastFrame != m_hCurrentFrame)
 		{
 			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 0, 760, 275));
 		}
@@ -225,22 +227,27 @@ void Gregor::animateHearts()
 	case 2:
 	{
 		m_hFrameIncrement = 0.4f;
-		int lastFrame = m_hCurrentFrame;
+
+		m_lastFrame = m_hCurrentFrame;
 		m_hFrameCounter += m_hFrameIncrement;
 		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % 4;
-		if (lastFrame != m_hCurrentFrame)
+
+		if (m_lastFrame != m_hCurrentFrame)
 		{
 			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 275, 760, 275));
 		}
+
 		break;
 	}
 	case 1:
 	{
 		m_hFrameIncrement = 0.6f;
-		int lastFrame = m_hCurrentFrame;
+
+		m_lastFrame = m_hCurrentFrame;
 		m_hFrameCounter += m_hFrameIncrement;
 		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % 4;
-		if (lastFrame != m_hCurrentFrame)
+
+		if (m_lastFrame != m_hCurrentFrame)
 		{
 			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 550, 760, 275));
 		}
@@ -249,13 +256,16 @@ void Gregor::animateHearts()
 	case 0:
 	{
 		m_hFrameIncrement = 0.4;
-		int lastFrame = m_hCurrentFrame;
+
+		m_lastFrame = m_hCurrentFrame;
 		m_hFrameCounter += m_hFrameIncrement;
 		m_hCurrentFrame = static_cast<int>(m_hFrameCounter) % 4;
-		if (lastFrame != m_hCurrentFrame)
+
+		if (m_lastFrame != m_hCurrentFrame)
 		{
 			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 825, 760, 275));
 		}
+
 		break;
 	}
 	}
