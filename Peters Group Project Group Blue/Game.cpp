@@ -94,6 +94,7 @@ void Game::processEvents()
 		if (sf::Event::MouseButtonReleased == newEvent.type)
 		{
 			processMouseReleased();
+			menuCollisions();
 		}
 	}
 }
@@ -264,5 +265,14 @@ void Game::bigAppleCollisions()
 			gregor.takeAway2Lives();
 		}
 	}
+}
+
+void Game::menuCollisions()
+{
+	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds()))
+	{
+		m_gameState = GameStates::Game;
+	}
+
 }
 
