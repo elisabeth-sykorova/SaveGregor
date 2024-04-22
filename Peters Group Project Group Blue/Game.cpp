@@ -95,6 +95,7 @@ void Game::processEvents()
 		{
 			processMouseReleased();
 		}
+		
 	}
 }
 
@@ -108,6 +109,15 @@ void Game::processKeys(sf::Event t_event)
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
 		m_exitGame = true;
+	}
+
+	if (sf::Keyboard::Num1 == t_event.key.code)
+	{
+		menu.setStartButtonState(1);
+	}
+	if (sf::Keyboard::Num0 == t_event.key.code)
+	{
+		menu.setStartButtonState(0);
 	}
 
 

@@ -6,6 +6,7 @@
 // Name: Elisabeth Sykorova
 // Login: C00301316
 // Work Done: added start button sprite and textures, animated start button, added switching between two start button states(/textures)
+//
 
 #ifndef Menu_HPP
 #define Menu_HPP
@@ -26,8 +27,8 @@ class Menu
 
 	const int START_GAME = 0; // for Save Gregor button
 	const int RESTART_GAME = 1; // for Try Again button
-	int m_currentStartButton = 0; // switches between "Save Gregor" and "Try again" based on the game phase
-	int m_newStartButton = 0; // used to switch start game button texture when the state changes
+	int m_currentStartButton = 1; // switches between "Save Gregor" and "Try again" based on the game phase
+	int m_newStartButton = 1; // used to switch start game button texture when the state changes
 
 	float m_frameIncrement = 0.4;
 	float m_frameCounter = 0.0f; // tracks the current frame as float
