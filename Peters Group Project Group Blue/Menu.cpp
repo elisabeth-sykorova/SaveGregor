@@ -78,6 +78,11 @@ void Menu::setStartButtonState(int t_startButtonState)
 	m_newStartButton = t_startButtonState;
 }
 
+void Menu::setRespawnButton()
+{
+	m_newStartButton == RESTART_GAME;
+}
+
 sf::Text Menu::getSaveGregorText()
 {
 	return m_saveGregorText;

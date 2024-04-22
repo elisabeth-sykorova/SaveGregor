@@ -51,6 +51,11 @@ private:
 	void bigAppleCollisions();
 
 	void menuCollisions();
+	void endCollisions();
+
+	void gregorCheck();
+
+	void gameReset();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message

@@ -74,12 +74,16 @@ public:
 
 	void update();
 
+	bool checkGregorAlive();
+
 	void takeAwayLife();
 	void takeAway2Lives();
 	void lifeCheck();
 
 	void move();
 	void randomMove();
+
+	void gregorReset();
 
 	// hearts
 	void loadHearts();

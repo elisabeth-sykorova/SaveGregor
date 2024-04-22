@@ -94,7 +94,14 @@ void Game::processEvents()
 		if (sf::Event::MouseButtonReleased == newEvent.type)
 		{
 			processMouseReleased();
-			menuCollisions();
+			if (m_gameState == GameStates::Menu)
+			{
+				menuCollisions();
+			}
+			if (m_gameState == GameStates::End)
+			{
+				endCollisions();
+			}
 		}
 	}
 }
@@ -127,6 +134,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Game)
 	{
+		gregorCheck();
 		gregor.update();
 		smallAppleCollisions();
 		bigAppleCollisions();
@@ -145,6 +153,10 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		menu.animateSprites();
 	}
+	if (m_gameState == GameStates::End)
+	{
+		menu.animateSprites();
+	}
 }
 
 /// <summary>
@@ -156,6 +168,10 @@ void Game::render()
 	if (m_gameState == GameStates::Menu)
 	{
 		/*m_window.draw(menu.getSaveGregorText());*/
+		m_window.draw(menu.getStartGameSprite());
+	}
+	if (m_gameState == GameStates::End)
+	{
 		m_window.draw(menu.getStartGameSprite());
 	}
 	if (m_gameState == GameStates::Game)
@@ -273,6 +289,30 @@ void Game::menuCollisions()
 	{
 		m_gameState = GameStates::Game;
 	}
+
+}
+
+void Game::endCollisions()
+{
+	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds()))
+	{
+		gameReset();
+		m_gameState = GameStates::Game;
+	}
+}
+
+void Game::gregorCheck()
+{
+	if (!gregor.checkGregorAlive())
+	{
+		m_gameState = GameStates::End;
+		menu.setRespawnButton();
+	}
+}
+
+void Game::gameReset()
+{
+	gregor.gregorReset();
 
 }
 
