@@ -47,6 +47,11 @@ void Gregor::update()
 	}
 }
 
+bool Gregor::checkGregorAlive()
+{
+	return m_gregorAlive;
+}
+
 void Gregor::takeAwayLife()
 {
 	if (m_lives >= 1)
@@ -184,6 +189,13 @@ void Gregor::randomMove()
 		m_countdown = 0; // sets countdown to 0
 	}
 
+}
+
+void Gregor::gregorReset()
+{
+	m_lives = 3;
+	m_gregorSprite.setPosition(600, 450);
+	m_gregorAlive = true;
 }
 
 void Gregor::loadHearts()

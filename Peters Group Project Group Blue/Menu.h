@@ -30,7 +30,7 @@ class Menu
 	int m_currentStartButton = 1; // switches between "Save Gregor" and "Try again" based on the game phase
 	int m_newStartButton = 1; // used to switch start game button texture when the state changes
 
-	float m_frameIncrement = 0.4;
+	float m_frameIncrement = 0.2;
 	float m_frameCounter = 0.0f; // tracks the current frame as float
 	int m_lastFrame = 0;
 	int m_currentFrame = 0; // no. current frame as int
@@ -55,6 +55,7 @@ public:
 	void animateSprites();
 
 	void setStartButtonState(int t_startButtonState); // used to switch the start button state and change its texture (0 - Save Gregor = start, 1 - Try Again = restart)
+	void setRespawnButton();
 
 
 
