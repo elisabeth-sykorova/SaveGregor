@@ -163,10 +163,12 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_gameState == GameStates::Menu)
 	{
 		menu.animateSprites();
+		menu.setStartButtonState(0);
 	}
 	if (m_gameState == GameStates::End)
 	{
 		menu.animateSprites();
+		menu.setStartButtonState(1);
 	}
 }
 

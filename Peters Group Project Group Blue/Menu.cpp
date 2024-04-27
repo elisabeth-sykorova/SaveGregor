@@ -34,6 +34,7 @@ void Menu::loadSprites()
 	m_startGameSprite.setScale(0.5, 0.5);
 
 	m_currentStartButton = START_GAME;
+	m_newStartButton = START_GAME;
 	m_startGameSprite.setTextureRect(sf::IntRect(0, 0, m_startButtonXY.x, m_startButtonXY.y));
 }
 
