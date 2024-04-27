@@ -23,8 +23,8 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
-	setupSprite(); // load texture
 	setupMouseDot();
+	loadBackground();
 
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
@@ -148,6 +148,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Game)
 	{
+		m_backgroundSprite.setTexture(m_gameplayBg);
 		gregorCheck();
 		gregor.update();
 		smallAppleCollisions();
@@ -166,6 +167,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Menu)
 	{
+		m_backgroundSprite.setTexture(m_startBg);
 		menu.animateSprites();
 		menu.setStartButtonState(0);
 	}
@@ -184,6 +186,7 @@ void Game::render()
 	m_window.clear(sf::Color::White);
 	if (m_gameState == GameStates::Menu)
 	{
+		m_window.draw(m_backgroundSprite);
 		/*m_window.draw(menu.getSaveGregorText());*/
 		m_window.draw(menu.getStartGameSprite());
 		m_window.draw(menu.getSoundButton());
@@ -194,6 +197,7 @@ void Game::render()
 	}
 	if (m_gameState == GameStates::Game)
 	{
+		m_window.draw(m_backgroundSprite);
 		m_window.draw(gregor.getGregor());
 		m_window.draw(gregor.getGregorHitbox());
 		for (int index = 0; index < m_activeSmallApple; index++)
@@ -234,22 +238,29 @@ void Game::setupFontAndText()
 /// <summary>
 /// load the texture and setup the sprite for the logo
 /// </summary>
-void Game::setupSprite()
-{
-	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
-	{
-		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
-	}
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
-}
 
 void Game::setupMouseDot()
 {
 	m_mouseDot.setRadius(1.0);
 	m_mouseDot.setOrigin(0.5, 0.5);
 	m_mouseDot.setFillColor(sf::Color::Black);
+}
+
+void Game::loadBackground()
+{
+	if (!m_startBg.loadFromFile("ASSETS\\IMAGES\\bg.png"))
+	{
+		// simple error message if previous call fails
+		std::cout << "problem loading start bg" << std::endl;
+	}
+
+	if (!m_gameplayBg.loadFromFile("ASSETS\\IMAGES\\tiles.png"))
+	{
+		// simple error message if previous call fails
+		std::cout << "problem loading game bg" << std::endl;
+	}
+
+	m_backgroundSprite.setTexture(m_startBg);
 }
 
 void Game::processMouseMove(sf::Event t_event)
@@ -330,7 +341,7 @@ void Game::soundButtonCollision()
 	if (m_mouseDot.getGlobalBounds().intersects(menu.getSoundButton().getGlobalBounds())) // if mouse intersects sound button
 	{
 		gregor.soundIsOn(!menu.getSoundOn());
-		menu.soundIsOn(!menu.getSoundOn());
+		menu.soundIsOn(!menu.getSoundOn()); // has to be last if negating 
 	}
 }
 

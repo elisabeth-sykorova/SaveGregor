@@ -44,8 +44,8 @@ private:
 	void render();
 	
 	void setupFontAndText();
-	void setupSprite();
 	void setupMouseDot();
+	void loadBackground();
 
 	void smallAppleCollisions();
 	void bigAppleCollisions();
@@ -89,6 +89,11 @@ private:
 	void processMouseReleased();
 
 	GameStates m_gameState = GameStates::Menu;
+
+	// background
+	sf::Sprite m_backgroundSprite;
+	sf::Texture m_startBg;
+	sf::Texture m_gameplayBg;
 
 };
 
