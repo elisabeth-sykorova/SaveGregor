@@ -52,6 +52,7 @@ private:
 
 	void menuCollisions();
 	void endCollisions();
+	void soundButtonCollision();
 
 	void gregorCheck();
 

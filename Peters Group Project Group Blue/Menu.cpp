@@ -5,6 +5,7 @@ Menu::Menu()
 {
 	loadMenu();
 	loadSprites();
+	loadSoundButton();
 }
 
 void Menu::loadMenu()
@@ -19,6 +20,27 @@ void Menu::loadMenu()
 	m_saveGregorText.setString("Save Gregor");
 	m_saveGregorText.setPosition(500, 450);
 
+}
+
+void Menu::loadSoundButton()
+{
+	if (!m_soundOnTexture.loadFromFile("ASSETS\\IMAGES\\music_on.png"))
+	{
+		std::cout << "Error loading sounds on" << std::endl;
+	}
+	if (!m_soundOffTexture.loadFromFile("ASSETS\\IMAGES\\music_off.png"))
+	{
+		std::cout << "Error loading sounds off" << std::endl;
+	}
+
+	m_soundButton.setTexture(m_soundOnTexture);
+	m_soundButton.setScale(0.6, 0.6);
+	m_soundButton.setPosition(0 + 25, MENU_SCREEN_HEIGHT - m_soundButton.getGlobalBounds().width - 25);
+}
+
+sf::Sprite Menu::getSoundButton()
+{
+	return m_soundButton;
 }
 
 void Menu::loadSprites()
@@ -87,4 +109,23 @@ void Menu::setRespawnButton()
 sf::Text Menu::getSaveGregorText()
 {
 	return m_saveGregorText;
+}
+
+void Menu::soundIsOn(bool t_soundOn)
+{
+	if (t_soundOn)
+	{
+		m_soundButton.setTexture(m_soundOnTexture);
+		m_textureOn = true;
+	}
+	else
+	{
+		m_soundButton.setTexture(m_soundOffTexture);
+		m_textureOn = false;
+	}
+}
+
+bool Menu::getSoundOn()
+{
+	return m_textureOn;
 }

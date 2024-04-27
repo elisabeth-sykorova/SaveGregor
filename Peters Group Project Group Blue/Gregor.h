@@ -74,6 +74,8 @@ class Gregor
 	sf::SoundBuffer m_stepsBuffer;
 	sf::Sound m_stepsSound;
 
+	bool m_soundOn = true;
+
 
 
 public:
@@ -82,6 +84,8 @@ public:
 	void loadGregor();
 	void loadSound();
 	void playSound();
+
+	void soundIsOn(bool t_soundOn);
 
 	sf::Sprite getGregor(); // gets gregors sprite
 	sf::RectangleShape getGregorHitbox(); // gets gregors hitbox

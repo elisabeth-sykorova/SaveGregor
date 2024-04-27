@@ -40,6 +40,14 @@ class Menu
 	sf::Vector2f m_tryAgainXY = { 730, 380 };
 	sf::Vector2f m_startButtonXY = m_saveGregorXY; // initializing to say "save gregor"
 
+	// sound button
+	sf::Sprite m_soundButton;
+	sf::Texture m_soundOnTexture;
+	sf::Texture m_soundOffTexture;
+
+	bool m_textureOn = true;
+
+
 
 
 
@@ -47,7 +55,11 @@ public:
 	Menu();
 
 	void loadMenu();
+	void loadSoundButton();
+	sf::Sprite getSoundButton();
 	sf::Text getSaveGregorText();
+	void soundIsOn(bool t_soundOn);
+	bool getSoundOn();
 
 	// button sprites
 	void loadSprites();

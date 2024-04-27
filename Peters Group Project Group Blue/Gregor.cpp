@@ -49,6 +49,12 @@ void Gregor::playSound()
 	}
 }
 
+void Gregor::soundIsOn(bool t_soundOn)
+{
+	m_soundOn = t_soundOn;
+
+}
+
 sf::Sprite Gregor::getGregor()
 {
 	return m_gregorSprite;
@@ -67,7 +73,15 @@ void Gregor::update()
 		animate();
 		randomMove();
 		lifeCheck();
-		playSound();
+
+		if (m_soundOn)
+		{
+			playSound();
+		}
+		else
+		{
+			m_stepsSound.stop();
+		}
 	}
 	else
 	{

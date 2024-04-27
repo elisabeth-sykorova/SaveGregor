@@ -96,6 +96,10 @@ void Game::processEvents()
 			processMouseReleased();
 			if (m_gameState == GameStates::Menu)
 			{
+				soundButtonCollision();
+			}
+			if (m_gameState == GameStates::Menu)
+			{
 				menuCollisions();
 			}
 			if (m_gameState == GameStates::End)
@@ -182,6 +186,7 @@ void Game::render()
 	{
 		/*m_window.draw(menu.getSaveGregorText());*/
 		m_window.draw(menu.getStartGameSprite());
+		m_window.draw(menu.getSoundButton());
 	}
 	if (m_gameState == GameStates::End)
 	{
@@ -317,6 +322,15 @@ void Game::endCollisions()
 	{
 		gameReset();
 		m_gameState = GameStates::Game;
+	}
+}
+
+void Game::soundButtonCollision()
+{
+	if (m_mouseDot.getGlobalBounds().intersects(menu.getSoundButton().getGlobalBounds())) // if mouse intersects sound button
+	{
+		gregor.soundIsOn(!menu.getSoundOn());
+		menu.soundIsOn(!menu.getSoundOn());
 	}
 }
 
