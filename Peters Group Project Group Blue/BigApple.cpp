@@ -148,3 +148,8 @@ void BigApple::deflectCounter()
 	}
 	std::cout << "" << m_counter << std::endl;
 }
+
+bool BigApple::checkDeflected()
+{
+	return m_reflected;
+}

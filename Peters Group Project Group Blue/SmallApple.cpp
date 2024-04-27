@@ -105,6 +105,11 @@ void SmallApple::setAliveFalse()
 	m_smallAppleAlive = false;
 }
 
+bool SmallApple::checkDeflected()
+{
+	return m_reflected;
+}
+
 void SmallApple::update(sf::Vector2f t_gregorPosition)
 {
 	move();

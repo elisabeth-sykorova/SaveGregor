@@ -149,12 +149,13 @@ void Game::update(sf::Time t_deltaTime)
 		smallAppleCollisions();
 		bigAppleCollisions();
 		gregor.animateHearts();
+		addEnemies();
 
-		for (int index = 0; index < MAX_SMALL_APPLES; index++)
+		for (int index = 0; index < m_activeSmallApple; index++)
 		{
 			smallApples[index].update(gregor.getGregor().getPosition());
 		}
-		for (int i = 0; i < MAX_BIG_APPLES; i++)
+		for (int i = 0; i < m_activeBigApple; i++)
 		{
 			bigApples[i].update(gregor.getGregor().getPosition());
 		}
@@ -188,11 +189,11 @@ void Game::render()
 	{
 		m_window.draw(gregor.getGregor());
 		m_window.draw(gregor.getGregorHitbox());
-		for (int index = 0; index < MAX_SMALL_APPLES; index++)
+		for (int index = 0; index < m_activeSmallApple; index++)
 		{
 			m_window.draw(smallApples[index].getSprite());
 		}
-		for (int i = 0; i < MAX_BIG_APPLES; i++)
+		for (int i = 0; i < m_activeBigApple; i++)
 		{
 			m_window.draw(bigApples[i].getSprite());
 		}
@@ -257,8 +258,14 @@ void Game::processMouseReleased()
 	{
 		if (m_mouseDot.getGlobalBounds().intersects(smallApples[index].getSprite().getGlobalBounds()))
 		{
+			if (!smallApples[index].checkDeflected())
+			{
+				m_deflections++;
+			}
 			smallApples[index].setReflectTrue();
+			
 		}
+		
 	}
 	for (int i = 0; i < MAX_BIG_APPLES; i++)
 	{
@@ -320,8 +327,39 @@ void Game::gregorCheck()
 	}
 }
 
+void Game::addEnemies()
+{
+	if (m_deflections == 5)
+	{
+		m_activeSmallApple = 2;
+	}
+	if (m_deflections == 10)
+	{
+		m_activeSmallApple = 3;
+		m_activeBigApple = 1;
+	}
+	if (m_deflections == 20)
+	{
+		m_activeSmallApple = 4;
+		m_activeBigApple = 2;
+	}
+}
+
 void Game::gameReset()
 {
+	m_deflections = 0;
+	m_activeSmallApple = 1;
+	m_activeBigApple = 0;
+
+	for (int i = 0; i < MAX_BIG_APPLES; i++)
+	{
+		bigApples[i].spawn();
+	}
+	for (int i = 0; i < MAX_SMALL_APPLES; i++)
+	{
+		smallApples[i].spawn();
+	}
+
 	gregor.gregorReset();
 
 }

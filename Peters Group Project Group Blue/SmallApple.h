@@ -1,6 +1,6 @@
 // Name: Elisabeth Sykorova
 // Login: C00301316
-// Work done: loaded, random spawn behind borders - 17.4, reflection, move, set line
+// Work done: loaded, random spawn behind borders - 17.4, reflection, move, set line, set a check for if its deflected
 //------------------------------------------------------------------------------------
 // Name: Leo Bolaks
 // Login: C00299368
@@ -48,6 +48,8 @@ public:
 	void move();
 
 	void setAliveFalse();
+
+	bool checkDeflected();
 
 	void update(sf::Vector2f t_gregorPosition);
 
