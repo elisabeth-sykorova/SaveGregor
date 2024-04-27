@@ -9,14 +9,15 @@ Gregor::Gregor()
 
 void Gregor::loadGregor()
 {
-	if (!m_gregorTexture.loadFromFile("ASSETS\\IMAGES\\Gregor.png"))
+	if (!m_gregorTexture.loadFromFile("ASSETS\\IMAGES\\gregor.png"))
 	{
 		std::cout << "Error loading gregor" << std::endl;
 	}
 	m_gregorSprite.setTexture(m_gregorTexture);
-	m_gregorSprite.setOrigin(500, 500);
+	m_gregorSprite.setOrigin(m_gregorDimensions.x/2, m_gregorDimensions.y/2);
 	m_gregorSprite.setScale(0.17, 0.17);
-	m_gregorSprite.setPosition(600, 450);
+	m_gregorSprite.setPosition(GREGOR_SCREEN_WIDTH/2, GREGOR_SCREEN_HEIGHT/2);
+	m_gregorSprite.setTextureRect(sf::IntRect(0, 0, static_cast<int>(m_gregorDimensions.x), static_cast<int>(m_gregorDimensions.y)));
 
 	m_gregorHitbox.setSize(sf::Vector2f(70, 70));
 	m_gregorHitbox.setOrigin(35, 35);
@@ -42,6 +43,7 @@ void Gregor::update()
 	if (m_gregorAlive)
 	{
 		move();
+		animate();
 		randomMove();
 		lifeCheck();
 	}
@@ -189,6 +191,18 @@ void Gregor::randomMove()
 		m_countdown = 0; // sets countdown to 0
 	}
 
+}
+
+void Gregor::animate()
+{
+	m_lastFrame = m_currentFrame;
+	m_frameCounter += m_frameIncrement;
+	m_currentFrame = static_cast<int>(m_frameCounter) % NO_FRAMES;
+
+	if (m_lastFrame != m_currentFrame) // animate the button
+	{
+		m_gregorSprite.setTextureRect(sf::IntRect(m_currentFrame * m_gregorDimensions.x, 0, m_gregorDimensions.x, m_gregorDimensions.y));
+	}
 }
 
 void Gregor::gregorReset()
