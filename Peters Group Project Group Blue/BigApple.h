@@ -53,6 +53,7 @@ public:
 	void setAliveFalse();
 
 	void deflectCounter();
+	bool checkDeflected();
 
 
 

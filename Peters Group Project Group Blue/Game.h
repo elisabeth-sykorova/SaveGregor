@@ -55,6 +55,8 @@ private:
 
 	void gregorCheck();
 
+	void addEnemies();
+
 	void gameReset();
 
 	sf::RenderWindow m_window; // main SFML window
@@ -64,9 +66,12 @@ private:
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
 
-	// small apple
-	
-	static const int MAX_SMALL_APPLES = 3;
+	int m_deflections = 0;
+
+	int m_activeSmallApple = 1; // active number of small apples
+	int m_activeBigApple = 0; // active number of big apples
+
+	static const int MAX_SMALL_APPLES = 5;
 	static const int MAX_BIG_APPLES = 2;
 
 	SmallApple smallApples[MAX_SMALL_APPLES];
