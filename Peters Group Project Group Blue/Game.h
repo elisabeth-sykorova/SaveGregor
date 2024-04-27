@@ -44,6 +44,7 @@ private:
 	void render();
 	
 	void setupFontAndText();
+
 	void setupMouseDot();
 	void loadBackground();
 

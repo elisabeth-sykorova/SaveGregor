@@ -356,18 +356,24 @@ void Game::gregorCheck()
 
 void Game::addEnemies()
 {
-	if (m_deflections == 5)
+	if (m_deflections == 2)
 	{
 		m_activeSmallApple = 2;
 	}
-	if (m_deflections == 10)
+	else if (m_deflections == 8)
 	{
-		m_activeSmallApple = 3;
 		m_activeBigApple = 1;
 	}
-	if (m_deflections == 20)
+	else if (m_deflections == 16)
+	{
+		m_activeSmallApple = 3;
+	}
+	else if (m_deflections == 25)
 	{
 		m_activeSmallApple = 4;
+	}
+	else if (m_deflections == 36)
+	{
 		m_activeBigApple = 2;
 	}
 }
