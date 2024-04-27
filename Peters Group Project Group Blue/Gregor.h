@@ -5,7 +5,7 @@
 //------------------------------
 // Name: Elisabeth Sykorova
 // Login: C00301316
-// Work Done: loaded heart sprites, animated hearts, hearts state switching based on health 18-04-2024
+// Work Done: loaded heart sprites, animated hearts, hearts state switching based on health 18-04-2024, animated gregor
 //
 
 
@@ -13,6 +13,7 @@
 #define Gregor_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "ctime"
 #include "cstdlib"
@@ -69,12 +70,18 @@ class Gregor
 	const int NO_FRAMES = 8;
 	sf::Vector2f m_gregorDimensions{ 1000.0f,1000.0f };
 
+	// sound effects
+	sf::SoundBuffer m_stepsBuffer;
+	sf::Sound m_stepsSound;
+
 
 
 public:
 	Gregor();
 
 	void loadGregor();
+	void loadSound();
+	void playSound();
 
 	sf::Sprite getGregor(); // gets gregors sprite
 	sf::RectangleShape getGregorHitbox(); // gets gregors hitbox

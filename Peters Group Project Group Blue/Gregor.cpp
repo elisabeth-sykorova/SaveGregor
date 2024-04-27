@@ -5,6 +5,7 @@ Gregor::Gregor()
 {
 	loadGregor();
 	loadHearts();
+	loadSound();
 }
 
 void Gregor::loadGregor()
@@ -28,6 +29,26 @@ void Gregor::loadGregor()
 
 }
 
+void Gregor::loadSound()
+{
+	if (!m_stepsBuffer.loadFromFile("ASSETS\\AUDIO\\gregor_walk.wav"))
+	{
+		std::cout << "Error loading gregor walk sound effect" << std::endl;
+	}
+
+	m_stepsSound.setBuffer(m_stepsBuffer);
+	m_stepsSound.setLoop(true);
+	m_stepsSound.setVolume(40);
+}
+
+void Gregor::playSound()
+{
+	if (m_stepsSound.getStatus() != sf::Sound::Playing)
+	{
+		m_stepsSound.play();
+	}
+}
+
 sf::Sprite Gregor::getGregor()
 {
 	return m_gregorSprite;
@@ -46,6 +67,11 @@ void Gregor::update()
 		animate();
 		randomMove();
 		lifeCheck();
+		playSound();
+	}
+	else
+	{
+		m_stepsSound.stop();
 	}
 }
 
