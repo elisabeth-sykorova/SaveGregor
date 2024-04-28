@@ -124,6 +124,7 @@ private:
 
 	// displaying time
 	sf::Text m_timeElapsed;
+	sf::Text m_endGameMessage;
 };
 
 #endif // !GAME_HPP

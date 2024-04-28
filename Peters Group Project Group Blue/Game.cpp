@@ -177,6 +177,9 @@ void Game::update(sf::Time t_deltaTime)
 		else
 		{
 			menu.setStartButtonState(1);
+			m_endGameMessage.setString("You kept Gregor alive for " + std::to_string(m_minutes) + " minutes and " + std::to_string(m_seconds) + " seconds and saved him from " + std::to_string(m_deflections) + " apples.");
+			m_endGameMessage.setOrigin(m_endGameMessage.getGlobalBounds().width / 2, m_endGameMessage.getGlobalBounds().height / 2);
+			m_endGameMessage.setPosition(SCREEN_WIDTH_BIG_APPLE / 2, SCREEN_HEIGHT_BIG_APPLE / 2 + 100);
 		}
 	}
 }
@@ -192,6 +195,11 @@ void Game::render()
 		m_window.draw(m_backgroundSprite);
 		m_window.draw(menu.getStartGameSprite());
 		m_window.draw(menu.getSoundButton());
+
+		if (m_gamePlayed)
+		{
+			m_window.draw(m_endGameMessage);
+		}
 	}
 	if (m_gameState == GameStates::Game)
 	{
@@ -227,7 +235,15 @@ void Game::setupFontAndText()
 	m_timeElapsed.setFont(m_gregorFont);
 	m_timeElapsed.setString("Time "); // initializing only
 	m_timeElapsed.setCharacterSize(50);
+	m_timeElapsed.setFillColor(sf::Color(229, 227, 222));
 	m_timeElapsed.setPosition(0 + 20, 0 + 20);
+
+	m_endGameMessage.setFont(m_gregorFont);
+	m_endGameMessage.setString("Time "); // initializing only
+	m_endGameMessage.setCharacterSize(32);
+	m_endGameMessage.setFillColor(sf::Color(229, 227, 222));
+	m_endGameMessage.setOrigin(m_endGameMessage.getGlobalBounds().width / 2, m_endGameMessage.getGlobalBounds().height / 2);
+	m_endGameMessage.setPosition(SCREEN_WIDTH_BIG_APPLE/2, SCREEN_HEIGHT_BIG_APPLE/2 + 100);
 
 }
 
