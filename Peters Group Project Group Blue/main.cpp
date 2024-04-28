@@ -1,9 +1,4 @@
-/// <summary>
-/// simple game loop for SFML[2.5.1]
-/// 
-/// @author Peter Lowe
-/// @date May 2019
-/// </summary>
+// Authors: Leo Bolaks, Elisabeth Sykorova
 
 #ifdef _DEBUG 
 #pragma comment(lib,"sfml-graphics-d.lib") 

@@ -1,3 +1,5 @@
+// Authors: Leo Bolaks, Elisabeth Sykorova
+
 #include "Gregor.h"
 #include <iostream>
 

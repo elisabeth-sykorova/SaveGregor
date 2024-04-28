@@ -97,6 +97,10 @@ void Game::processEvents()
 				soundButtonCollision();
 				menuCollisions();
 			}
+			if (m_gameState == GameStates::Instructions)
+			{
+				instructionsButton();
+			}
 		}
 		
 	}
@@ -204,9 +208,19 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
+	if (m_gameState == GameStates::Instructions)
+	{
+		m_window.draw(m_backgroundSprite);
+		m_window.draw(instructions.getStoryText());
+		m_window.draw(instructions.getControlsText());
+		m_window.draw(instructions.getHomeButton());
+		m_window.draw(instructions.getBigAppleExample());
+		m_window.draw(instructions.getSmallAppleExample());
+	}
 	if (m_gameState == GameStates::Menu)
 	{
 		m_window.draw(m_backgroundSprite);
+		m_window.draw(m_instructionsIconSprite);
 		m_window.draw(menu.getStartGameSprite());
 		m_window.draw(menu.getSoundButton());
 
@@ -304,6 +318,13 @@ void Game::loadBackground()
 	}
 
 	m_backgroundSprite.setTexture(m_startBg);
+
+	if (!m_instructionsIconTexture.loadFromFile("ASSETS\\IMAGES\\instructions_icon.png"))
+	{
+		std::cout << "Error loading instructions icon" << std::endl;
+	}
+	m_instructionsIconSprite.setTexture(m_instructionsIconTexture);
+	m_instructionsIconSprite.setPosition(500, 500);
 }
 
 void Game::processMouseMove(sf::Event t_event)
@@ -398,6 +419,11 @@ void Game::menuCollisions()
 		gameReset();
 		m_gameState = GameStates::Game;
 		m_backgroundSprite.setTexture(m_gameplayBg);
+	}
+
+	if (m_mouseDot.getGlobalBounds().intersects(m_instructionsIconSprite.getGlobalBounds()))
+	{
+		m_gameState = GameStates::Instructions;
 	}
 
 }
@@ -509,6 +535,14 @@ void Game::gameReset()
 	m_minutes = 0;
 	m_secondsLastChecked = m_seconds;
 
+}
+
+void Game::instructionsButton()
+{
+	if (m_mouseDot.getGlobalBounds().intersects(instructions.getHomeButton().getGlobalBounds()))
+	{
+		m_gameState = GameStates::Menu;
+	}
 }
 
 void Game::loadSound()
