@@ -105,6 +105,9 @@ private:
 	sf::Sound m_appleClickedSound;
 	sf::SoundBuffer m_appleClickedBuffer;
 
+	sf::Sound m_hitSound;
+	sf::SoundBuffer m_hitBuffer;
+
 };
 
 #endif // !GAME_HPP

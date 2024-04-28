@@ -309,6 +309,11 @@ void Game::smallAppleCollisions()
 		{
 			smallApples[i].setAliveFalse();
 			gregor.takeAwayLife();
+
+			if (menu.getSoundOn())
+			{
+				m_hitSound.play();
+			}
 		}
 	}
 }
@@ -321,6 +326,11 @@ void Game::bigAppleCollisions()
 		{
 			bigApples[i].setAliveFalse();
 			gregor.takeAway2Lives();
+
+			if (menu.getSoundOn())
+			{
+				m_hitSound.play();
+			}
 		}
 	}
 }
@@ -426,6 +436,12 @@ void Game::loadSound()
 		std::cout << "Error reflect sound" << std::endl;
 	}
 	m_appleClickedSound.setBuffer(m_appleClickedBuffer);
+
+	if (!m_hitBuffer.loadFromFile("ASSETS/AUDIO/hit.wav"))
+	{
+		std::cout << "Error hit sound" << std::endl;
+	}
+	m_hitSound.setBuffer(m_hitBuffer);
 
 }
 
