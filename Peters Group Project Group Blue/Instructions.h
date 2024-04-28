@@ -1,3 +1,7 @@
+// Name: Leo Bolaks
+// Login: C00299368
+// Work Done: fully set up text and positions, set up small and big apple examples,
+
 #ifndef Instructions_HPP
 #define Instructions_HPP
 

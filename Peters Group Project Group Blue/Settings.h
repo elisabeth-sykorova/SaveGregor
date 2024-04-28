@@ -1,3 +1,6 @@
+// un-used
+// Leo Bolaks, Elisabeth Sykorova
+
 #ifndef Settings_HPP
 #define Settings_HPP
 

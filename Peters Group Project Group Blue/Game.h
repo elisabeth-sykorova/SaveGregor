@@ -1,6 +1,7 @@
 // Name: Leo Bolaks
 // Login: C00299368
-// Work Done: 
+// Work Done: added game states, set up small and big apple collisions with gregor, added game reset function, added instructions button
+// added more enemies being added the more you deflect
 //----------------------------------------------------------------------------------------------------------------
 // Name: Elisabeth Sykorova
 // Login: C00301316

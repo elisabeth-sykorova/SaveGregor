@@ -1,3 +1,5 @@
+// Authors: Leo Bolaks, Elisabeth Sykorova
+
 #include "SmallApple.h"
 #include <iostream>
 #include <iostream>

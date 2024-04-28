@@ -1,3 +1,5 @@
+// Authors: Leo Bolaks, Elisabeth Sykorova
+
 #include "RottenApple.h"
 #include <iostream>
 
