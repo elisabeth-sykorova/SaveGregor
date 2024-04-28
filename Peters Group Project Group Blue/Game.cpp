@@ -135,9 +135,15 @@ void Game::update(sf::Time t_deltaTime)
 		updateTime();
 		updateAppleCount();
 
-		if (m_backgroundMusic.getStatus() != sf::Sound::Stopped) // later swap for a different sound
+		if (!m_gameplayMusic)
 		{
-			m_backgroundMusic.stop();
+			m_backgroundMusic.setBuffer(m_gameplayMusicBuffer);
+			m_backgroundMusic.setVolume(15);
+			if (menu.getSoundOn())
+			{
+				m_backgroundMusic.play();
+			}
+			m_gameplayMusic = true;
 		}
 
 		if (!m_gamePlayed)
@@ -163,6 +169,13 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_gameState == GameStates::Menu)
 	{
 		buttonHovering();
+
+		if (m_gameplayMusic)
+		{
+			m_backgroundMusic.setBuffer(m_menuMusicBuffer);
+			m_backgroundMusic.setVolume(60);
+			m_gameplayMusic = false;
+		}
 
 		if (m_backgroundMusic.getStatus() != sf::Sound::Playing && menu.getSoundOn())
 		{
@@ -560,6 +573,11 @@ void Game::loadSound()
 	m_backgroundMusic.setBuffer(m_menuMusicBuffer);
 	m_backgroundMusic.setVolume(60);
 	m_backgroundMusic.setLoop(true);
+
+	if (!m_gameplayMusicBuffer.loadFromFile("ASSETS/AUDIO/gameplay_music.wav"))
+	{
+		std::cout << "Error gameplay music " << std::endl;
+	}
 
 }
 
