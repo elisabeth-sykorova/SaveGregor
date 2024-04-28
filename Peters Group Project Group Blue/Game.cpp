@@ -283,6 +283,7 @@ void Game::processMouseReleased()
 			if (!smallApples[index].checkDeflected())
 			{
 				m_deflections++;
+				std::cout << m_deflections << std::endl;
 			}
 			smallApples[index].setReflectTrue();
 
@@ -299,6 +300,14 @@ void Game::processMouseReleased()
 		if (m_mouseDot.getGlobalBounds().intersects(bigApples[i].getSprite().getGlobalBounds()))
 		{
 			bigApples[i].deflectCounter();
+			
+			if (bigApples[i].checkDeflected() && !bigApples[i].getCountedReflection()) // if big apple is deflected but it was not counter yet
+			{
+				m_deflections++;
+				std::cout << m_deflections << std::endl;
+				bigApples[i].countReflection(); // count it (once)
+			}
+
 			if (menu.getSoundOn())
 			{
 				m_appleClickedSound.play();

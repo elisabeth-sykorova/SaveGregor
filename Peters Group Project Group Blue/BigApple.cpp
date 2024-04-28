@@ -16,7 +16,6 @@ void BigApple::loadBigApple()
 	m_sprite.setTexture(m_texture);
 	m_sprite.setOrigin(sf::Vector2f(m_texture.getSize().x * m_scale / 2,
 		m_texture.getSize().y * m_scale / 2)); // origin in the centre of apple
-	std::cout << "Origin x: " << m_sprite.getOrigin().x << " y:" << m_sprite.getOrigin().y << std::endl;
 	m_sprite.setPosition(m_position);
 	m_sprite.setTextureRect(sf::IntRect(0, 0, static_cast<int>(m_dimensions.x), static_cast<int>(m_dimensions.y)));
 	m_sprite.setScale(m_scale, m_scale);
@@ -141,6 +140,7 @@ void BigApple::respawn(sf::Vector2f t_gregorPosition)
 	setLine(t_gregorPosition);
 	m_bigAppleAlive = true;
 	m_reflected = false;
+	m_countedReflection = false;
 	m_counter = 0;
 }
 /// <summary>
@@ -160,10 +160,19 @@ void BigApple::deflectCounter()
 	{
 		m_reflected = true;
 	}
-	std::cout << "" << m_counter << std::endl;
 }
 
 bool BigApple::checkDeflected()
 {
 	return m_reflected;
+}
+
+void BigApple::countReflection()
+{
+	m_countedReflection = true;
+}
+
+bool BigApple::getCountedReflection()
+{
+	return m_countedReflection;
 }

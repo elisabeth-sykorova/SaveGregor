@@ -43,6 +43,8 @@ class BigApple
 	const int NO_FRAMES = 30;
 	sf::Vector2f m_dimensions{ 1000.0f,1000.0f };
 
+	bool m_countedReflection = false;
+
 
 public:
 	BigApple();
@@ -63,6 +65,8 @@ public:
 
 	void deflectCounter();
 	bool checkDeflected();
+	void countReflection();
+	bool getCountedReflection();
 
 
 
