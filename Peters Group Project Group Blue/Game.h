@@ -23,8 +23,7 @@
 enum class GameStates
 {
 	Menu,
-	Game,
-	End
+	Game
 };
 class Game
 {
@@ -52,7 +51,6 @@ private:
 	void bigAppleCollisions();
 
 	void menuCollisions();
-	void endCollisions();
 	void soundButtonCollision();
 
 	void gregorCheck();
@@ -69,6 +67,7 @@ private:
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
+	bool m_gamePlayed = false;
 
 	int m_deflections = 0;
 

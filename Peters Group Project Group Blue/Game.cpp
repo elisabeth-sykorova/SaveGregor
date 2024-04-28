@@ -100,10 +100,6 @@ void Game::processEvents()
 				soundButtonCollision();
 				menuCollisions();
 			}
-			else if (m_gameState == GameStates::End)
-			{
-				endCollisions();
-			}
 		}
 		
 	}
@@ -146,6 +142,10 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Game)
 	{
+		if (!m_gamePlayed)
+		{
+			m_gamePlayed = true;
+		}
 		m_backgroundSprite.setTexture(m_gameplayBg);
 		gregorCheck();
 		gregor.update();
@@ -167,12 +167,14 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_backgroundSprite.setTexture(m_startBg);
 		menu.animateSprites();
-		menu.setStartButtonState(0);
-	}
-	if (m_gameState == GameStates::End)
-	{
-		menu.animateSprites();
-		menu.setStartButtonState(1);
+		if (!m_gamePlayed)
+		{
+			menu.setStartButtonState(0);
+		}
+		else
+		{
+			menu.setStartButtonState(1);
+		}
 	}
 }
 
@@ -185,13 +187,8 @@ void Game::render()
 	if (m_gameState == GameStates::Menu)
 	{
 		m_window.draw(m_backgroundSprite);
-		/*m_window.draw(menu.getSaveGregorText());*/
 		m_window.draw(menu.getStartGameSprite());
 		m_window.draw(menu.getSoundButton());
-	}
-	if (m_gameState == GameStates::End)
-	{
-		m_window.draw(menu.getStartGameSprite());
 	}
 	if (m_gameState == GameStates::Game)
 	{
@@ -343,22 +340,10 @@ void Game::menuCollisions()
 		{
 			m_buttonClickSound.play();
 		}
-		m_gameState = GameStates::Game;
-	}
-
-}
-
-void Game::endCollisions()
-{
-	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds()))
-	{
-		if (menu.getSoundOn())
-		{
-			m_buttonClickSound.play();
-		}
 		gameReset();
 		m_gameState = GameStates::Game;
 	}
+
 }
 
 void Game::soundButtonCollision()
@@ -374,8 +359,7 @@ void Game::gregorCheck()
 {
 	if (!gregor.checkGregorAlive())
 	{
-		m_gameState = GameStates::End;
-		menu.setRespawnButton();
+		m_gameState = GameStates::Menu;
 	}
 }
 
