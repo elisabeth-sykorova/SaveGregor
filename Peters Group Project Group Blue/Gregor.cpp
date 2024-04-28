@@ -38,7 +38,7 @@ void Gregor::loadSound()
 
 	m_stepsSound.setBuffer(m_stepsBuffer);
 	m_stepsSound.setLoop(true);
-	m_stepsSound.setVolume(40);
+	m_stepsSound.setVolume(100);
 }
 
 void Gregor::playSound()

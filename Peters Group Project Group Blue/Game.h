@@ -75,6 +75,7 @@ private:
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
 	bool m_gamePlayed = false;
+	bool m_gameplayMusic = false;
 
 	int m_deflections = 0;
 
@@ -116,6 +117,7 @@ private:
 
 	sf::Sound m_backgroundMusic;
 	sf::SoundBuffer m_menuMusicBuffer;
+	sf::SoundBuffer m_gameplayMusicBuffer;
 
 	// Time tracking
 	float m_secondsCounter = 0.0f;
