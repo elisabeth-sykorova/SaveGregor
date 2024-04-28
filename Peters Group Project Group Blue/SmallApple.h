@@ -26,16 +26,25 @@ class SmallApple
 	sf::Texture m_texture;
 	sf::Vector2f m_position{ 0.0f,0.0f };
 	sf::Sprite m_sprite;
-	float m_scale = 0.1f;
+	float m_scale = 0.2f;
 	float m_speed = 2.5f;
 	float m_lineLength;
 	sf::Vector2f m_velocity;
+
+	sf::Vector2f m_dimensions{ 500.0f,500.0f };
 
 	bool m_smallAppleAlive = false;
 
 	bool m_reflected = false;
 
 	sf::CircleShape m_mousePoint;
+
+	// animating
+	int m_currentFrame = 0;
+	float m_frameIncrement = 0.2; // increments the frame counter with each update
+	float m_frameCounter = 0.0f; // keeps the float count of current frame
+	int m_lastFrame;
+	const int NO_FRAMES = 30;
 
 
 public:
@@ -46,6 +55,7 @@ public:
 	void spawn();
 	void setLine(sf::Vector2f t_gregorPosition);
 	void move();
+	void animate();
 
 	void setAliveFalse();
 
