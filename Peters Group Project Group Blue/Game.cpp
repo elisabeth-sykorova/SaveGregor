@@ -56,7 +56,6 @@ void Game::run()
 	sf::Time timePerFrame = sf::seconds(1.0f / fps); // 60 fps
 	while (m_window.isOpen())
 	{
-		processEvents(); // as many as possible
 		timeSinceLastUpdate += clock.restart();
 		while (timeSinceLastUpdate > timePerFrame)
 		{
@@ -168,6 +167,8 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Menu)
 	{
+		m_backgroundSprite.setTexture(m_startBg); // keeps setting
+
 		buttonHovering();
 
 		if (m_gameplayMusic)
@@ -200,6 +201,10 @@ void Game::update(sf::Time t_deltaTime)
 			m_endGameMessage.setPosition(SCREEN_WIDTH_BIG_APPLE / 2, SCREEN_HEIGHT_BIG_APPLE / 2 + 100);
 		}
 	}
+	if (m_gameState == GameStates::Instructions)
+	{
+		m_backgroundSprite.setTexture(m_instructionsBg);
+	}
 }
 
 /// <summary>
@@ -216,6 +221,7 @@ void Game::render()
 		m_window.draw(instructions.getHomeButton());
 		m_window.draw(instructions.getBigAppleExample());
 		m_window.draw(instructions.getSmallAppleExample());
+		m_window.draw(instructions.getHeartExample());
 	}
 	if (m_gameState == GameStates::Menu)
 	{
@@ -324,7 +330,14 @@ void Game::loadBackground()
 		std::cout << "Error loading instructions icon" << std::endl;
 	}
 	m_instructionsIconSprite.setTexture(m_instructionsIconTexture);
-	m_instructionsIconSprite.setPosition(500, 500);
+	m_instructionsIconSprite.setScale(0.7, 0.7);
+	m_instructionsIconSprite.setPosition(0 + 120, SCREEN_HEIGHT_BIG_APPLE - 90);
+
+	if (!m_instructionsBg.loadFromFile("ASSETS\\IMAGES\\instructions_bg.png"))
+	{
+		// simple error message if previous call fails
+		std::cout << "problem loading instructions bg" << std::endl;
+	}
 }
 
 void Game::processMouseMove(sf::Event t_event)
@@ -424,6 +437,10 @@ void Game::menuCollisions()
 	if (m_mouseDot.getGlobalBounds().intersects(m_instructionsIconSprite.getGlobalBounds()))
 	{
 		m_gameState = GameStates::Instructions;
+		if (menu.getSoundOn())
+		{
+			m_buttonClickSound.play();
+		}
 	}
 
 }
@@ -542,6 +559,10 @@ void Game::instructionsButton()
 	if (m_mouseDot.getGlobalBounds().intersects(instructions.getHomeButton().getGlobalBounds()))
 	{
 		m_gameState = GameStates::Menu;
+		if (menu.getSoundOn())
+		{
+			m_buttonClickSound.play();
+		}
 	}
 }
 

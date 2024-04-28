@@ -113,6 +113,7 @@ private:
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_startBg;
 	sf::Texture m_gameplayBg;
+	sf::Texture m_instructionsBg;
 
 	// sound effects
 	sf::Sound m_buttonClickSound;
