@@ -142,11 +142,15 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Game)
 	{
+		if (m_backgroundMusic.getStatus() != sf::Sound::Stopped) // later swap for a different sound
+		{
+			m_backgroundMusic.stop();
+		}
+
 		if (!m_gamePlayed)
 		{
 			m_gamePlayed = true;
 		}
-		m_backgroundSprite.setTexture(m_gameplayBg);
 		gregorCheck();
 		gregor.update();
 		smallAppleCollisions();
@@ -165,8 +169,13 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Menu)
 	{
-		m_backgroundSprite.setTexture(m_startBg);
+		if (m_backgroundMusic.getStatus() != sf::Sound::Playing)
+		{
+			m_backgroundMusic.play();
+		}
+
 		menu.animateSprites();
+
 		if (!m_gamePlayed)
 		{
 			menu.setStartButtonState(0);
@@ -342,6 +351,7 @@ void Game::menuCollisions()
 		}
 		gameReset();
 		m_gameState = GameStates::Game;
+		m_backgroundSprite.setTexture(m_gameplayBg);
 	}
 
 }
@@ -359,7 +369,9 @@ void Game::gregorCheck()
 {
 	if (!gregor.checkGregorAlive())
 	{
-		m_gameState = GameStates::Menu;
+		m_gameState = GameStates::Menu; 
+		m_backgroundSprite.setTexture(m_startBg);
+		
 	}
 }
 
@@ -426,6 +438,13 @@ void Game::loadSound()
 		std::cout << "Error hit sound" << std::endl;
 	}
 	m_hitSound.setBuffer(m_hitBuffer);
+
+	if (!m_menuMusicBuffer.loadFromFile("ASSETS/AUDIO/menu_music.wav"))
+	{
+		std::cout << "Error menu music " << std::endl;
+	}
+	m_backgroundMusic.setBuffer(m_menuMusicBuffer);
+	m_backgroundMusic.setVolume(60);
 
 }
 

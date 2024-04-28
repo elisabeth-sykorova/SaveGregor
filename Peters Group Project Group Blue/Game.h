@@ -107,6 +107,8 @@ private:
 	sf::Sound m_hitSound;
 	sf::SoundBuffer m_hitBuffer;
 
+	sf::Sound m_backgroundMusic;
+	sf::SoundBuffer m_menuMusicBuffer;
 };
 
 #endif // !GAME_HPP
