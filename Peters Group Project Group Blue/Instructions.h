@@ -1,6 +1,10 @@
 // Name: Leo Bolaks
 // Login: C00299368
 // Work Done: fully set up text and positions, set up small and big apple examples,
+//-----------------------------------------------------------
+// Name: Elisabeth Sykorova
+// Login: C00301316
+// Work Done: adjusted layout, added heart example icon
 
 #ifndef Instructions_HPP
 #define Instructions_HPP

@@ -5,7 +5,9 @@
 //----------------------------------------------------------------------------------------------------------------
 // Name: Elisabeth Sykorova
 // Login: C00301316
-// Work Done: Mouse move/ released functions, added mouse dot circle shape, added sounds and background, adjusted difficulty increasing, combined menu and end state into one - menu state
+// Work Done: Mouse move/ released functions, added mouse dot circle shape, added sounds and background, adjusted difficulty increasing,
+// combined menu and end state into one - menu state, added more background, displaying stats and messages in menu, time tracker,
+// displaying apple reflected, adjusted layout, background music, sound on and off
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -48,9 +50,9 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	
-	void setupFontAndText();
+	void setupFontAndText(); // text
 
-	void setupMouseDot();
+	void setupMouseDot(); // at mouse location
 	void loadBackground();
 
 	void smallAppleCollisions();
@@ -64,8 +66,8 @@ private:
 
 	void addEnemies();
 
-	void updateTime();
-	void updateAppleCount();
+	void updateTime(); // displaying time elapsed in game
+	void updateAppleCount(); // displaying apples reflected in game
 
 	void gameReset();
 

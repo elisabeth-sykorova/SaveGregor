@@ -93,12 +93,12 @@ void Game::processEvents()
 			processMouseReleased();
 			if (m_gameState == GameStates::Menu)
 			{
-				soundButtonCollision();
+				soundButtonCollision(); // if menu, check for menu collisions
 				menuCollisions();
 			}
 			if (m_gameState == GameStates::Instructions)
 			{
-				instructionsButton();
+				instructionsButton(); // if instructions, check for instructions collisions
 			}
 		}
 		
@@ -134,13 +134,13 @@ void Game::update(sf::Time t_deltaTime)
 		updateTime();
 		updateAppleCount();
 
-		if (!m_gameplayMusic)
+		if (!m_gameplayMusic) // music isnt yet playing
 		{
 			m_backgroundMusic.setBuffer(m_gameplayMusicBuffer);
 			m_backgroundMusic.setVolume(15);
 			if (menu.getSoundOn())
 			{
-				m_backgroundMusic.play();
+				m_backgroundMusic.play(); // if sound isnt turned off
 			}
 			m_gameplayMusic = true;
 		}
@@ -167,8 +167,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Menu)
 	{
-
-		buttonHovering();
+		buttonHovering(); // changing color of button to indicate hovering
 
 		if (m_gameplayMusic)
 		{
@@ -183,7 +182,7 @@ void Game::update(sf::Time t_deltaTime)
 		}
 		else if (m_backgroundMusic.getStatus() != sf::Sound::Paused && !menu.getSoundOn())
 		{
-			m_backgroundMusic.pause();
+			m_backgroundMusic.pause(); // pause when sound switched off (then resume at the same spot)
 		}
 
 		menu.animateSprites();
@@ -198,6 +197,7 @@ void Game::update(sf::Time t_deltaTime)
 			menu.setStartButtonState(1);
 
 			m_backgroundSprite.setTexture(m_endBg);
+			// stats message after game over:
 			m_endGameMessage.setString("You kept Gregor alive for " + std::to_string(m_minutes) + " minutes and " + std::to_string(m_seconds) + " seconds and saved him from " + std::to_string(m_deflections) + " apples.");
 			m_endGameMessage.setOrigin(m_endGameMessage.getGlobalBounds().width / 2, m_endGameMessage.getGlobalBounds().height / 2);
 			m_endGameMessage.setPosition(SCREEN_WIDTH_BIG_APPLE / 2, SCREEN_HEIGHT_BIG_APPLE / 2 + 100);
@@ -304,7 +304,7 @@ void Game::setupFontAndText()
 /// load the texture and setup the sprite for the logo
 /// </summary>
 
-void Game::setupMouseDot()
+void Game::setupMouseDot() // circle shape
 {
 	m_mouseDot.setRadius(1.0);
 	m_mouseDot.setOrigin(0.5, 0.5);
@@ -313,19 +313,19 @@ void Game::setupMouseDot()
 
 void Game::loadBackground()
 {
-	if (!m_startBg.loadFromFile("ASSETS\\IMAGES\\bg.png"))
+	if (!m_startBg.loadFromFile("ASSETS\\IMAGES\\bg.png")) // standard menu bg
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading start bg" << std::endl;
 	}
 
-	if (!m_gameplayBg.loadFromFile("ASSETS\\IMAGES\\tiles_lighter.png"))
+	if (!m_gameplayBg.loadFromFile("ASSETS\\IMAGES\\tiles_lighter.png")) // standard gameplay bg
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading game bg" << std::endl;
 	}
 
-	if (!m_endBg.loadFromFile("ASSETS\\IMAGES\\bgdeath.png"))
+	if (!m_endBg.loadFromFile("ASSETS\\IMAGES\\bgdeath.png")) // menu bg after a game was played and stats are shown
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading end bg" << std::endl;
@@ -365,13 +365,13 @@ void Game::processMouseReleased()
 		{
 			if (!smallApples[index].checkDeflected())
 			{
-				m_deflections++;
+				m_deflections++; // if an apple is reflected, add one
 			}
 			smallApples[index].setReflectTrue();
 
 			if (menu.getSoundOn())
 			{
-				m_appleClickedSound.play();
+				m_appleClickedSound.play(); // if sound is on, play reflection sound effect
 			}
 			
 		}
@@ -391,7 +391,7 @@ void Game::processMouseReleased()
 
 			if (menu.getSoundOn())
 			{
-				m_appleClickedSound.play();
+				m_appleClickedSound.play(); // if sound is on, play reflection sound effect
 			}
 		}
 	}
@@ -408,7 +408,7 @@ void Game::smallAppleCollisions()
 
 			if (menu.getSoundOn())
 			{
-				m_hitSound.play();
+				m_hitSound.play(); // if sound is on, play impact sound effect
 			}
 		}
 	}
@@ -421,7 +421,7 @@ void Game::bigAppleCollisions()
 		if (bigApples[i].getSprite().getGlobalBounds().intersects(gregor.getGregorHitbox().getGlobalBounds()))
 		{
 			bigApples[i].setAliveFalse();
-			gregor.takeAway2Lives();
+			gregor.takeAway2Lives(); // big apple collision = two lives taken
 
 			if (menu.getSoundOn())
 			{
@@ -433,20 +433,20 @@ void Game::bigAppleCollisions()
 
 void Game::menuCollisions()
 {
-	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds()))
+	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds())) // start game button clicked
 	{
 		if (menu.getSoundOn())
 		{
 			m_buttonClickSound.play();
 		}
 		gameReset();
-		m_gameState = GameStates::Game;
+		m_gameState = GameStates::Game; // start game
 		m_backgroundSprite.setTexture(m_gameplayBg);
 	}
 
-	if (m_mouseDot.getGlobalBounds().intersects(m_instructionsIconSprite.getGlobalBounds()))
+	if (m_mouseDot.getGlobalBounds().intersects(m_instructionsIconSprite.getGlobalBounds())) // instructions button clicked
 	{
-		m_gameState = GameStates::Instructions;
+		m_gameState = GameStates::Instructions; // open description/instructions
 		if (menu.getSoundOn())
 		{
 			m_buttonClickSound.play();
@@ -455,7 +455,7 @@ void Game::menuCollisions()
 
 }
 
-void Game::buttonHovering()
+void Game::buttonHovering() // changing color if mouse on button
 {
 	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds()))
 	{
@@ -471,7 +471,7 @@ void Game::soundButtonCollision()
 {
 	if (m_mouseDot.getGlobalBounds().intersects(menu.getSoundButton().getGlobalBounds())) // if mouse intersects sound button
 	{
-		gregor.soundIsOn(!menu.getSoundOn());
+		gregor.soundIsOn(!menu.getSoundOn()); // switches to other state than what it currently is if clicked
 		menu.soundIsOn(!menu.getSoundOn()); // has to be last if negating 
 	}
 }
@@ -480,13 +480,13 @@ void Game::gregorCheck()
 {
 	if (!gregor.checkGregorAlive())
 	{
-		m_gameState = GameStates::Menu; 
+		m_gameState = GameStates::Menu; // game over - back to menu
 		m_backgroundSprite.setTexture(m_startBg);
 		
 	}
 }
 
-void Game::addEnemies()
+void Game::addEnemies() // progressively increasing difficulty with apples reflected
 {
 	if (m_deflections == 2)
 	{
@@ -531,13 +531,13 @@ void Game::updateTime()
 		null = "0";
 	}
 
-	m_timeString = std::to_string(m_minutes) + divider + null + std::to_string(m_seconds);
+	m_timeString = std::to_string(m_minutes) + divider + null + std::to_string(m_seconds); // (time forma => minutes:seconds,seconds)
 	m_timeElapsed.setString(m_timeString);
 }
 
 void Game::updateAppleCount()
 {
-	m_appleCountText.setString(std::to_string(m_deflections));
+	m_appleCountText.setString(std::to_string(m_deflections)); // change text to match the amount of apples reflected
 }
 
 void Game::gameReset()
@@ -566,7 +566,7 @@ void Game::gameReset()
 
 void Game::instructionsButton()
 {
-	if (m_mouseDot.getGlobalBounds().intersects(instructions.getHomeButton().getGlobalBounds()))
+	if (m_mouseDot.getGlobalBounds().intersects(instructions.getHomeButton().getGlobalBounds())) // home button in instruction screen
 	{
 		m_gameState = GameStates::Menu;
 		if (menu.getSoundOn())

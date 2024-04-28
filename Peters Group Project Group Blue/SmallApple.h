@@ -1,6 +1,6 @@
 // Name: Elisabeth Sykorova
 // Login: C00301316
-// Work done: loaded, random spawn behind borders - 17.4, reflection, move, set line, set a check for if its deflected
+// Work done: loaded, random spawn behind borders - 17.4, reflection, move, set line, set a check for if its deflected, animation
 //------------------------------------------------------------------------------------
 // Name: Leo Bolaks
 // Login: C00299368

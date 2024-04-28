@@ -1,7 +1,10 @@
 // Name : Leo Bolaks
 // Login: C00299368
 // Work Done: set up sprite, set up sprite spawn, movement, and line following Gregor, respawn, collisions, deflecting,
-//
+// ----------------------------------
+// Name: Elisabeth Sykorova
+// Login: C00301316
+// Work Done: animation, counting as a reflection
 
 #ifndef BigApple_HPP
 #define BigApple_HPP
