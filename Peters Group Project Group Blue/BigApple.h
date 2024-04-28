@@ -35,6 +35,14 @@ class BigApple
 
 	bool m_reflected = false; // if the apple is reflected 
 
+	// animating apple
+	int m_currentFrame = 0;
+	float m_frameIncrement = 0.2; // increments the frame counter with each update
+	float m_frameCounter = 0.0f; // keeps the float count of current frame
+	int m_lastFrame;
+	const int NO_FRAMES = 30;
+	sf::Vector2f m_dimensions{ 1000.0f,1000.0f };
+
 
 public:
 	BigApple();
@@ -43,6 +51,7 @@ public:
 	sf::Sprite getSprite();
 
 	void update(sf::Vector2f t_gregorPosition);
+	void animate();
 
 	void spawn();
 	void setLine(sf::Vector2f t_gregorPosition);

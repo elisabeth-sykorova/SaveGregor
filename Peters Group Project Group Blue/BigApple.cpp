@@ -8,7 +8,7 @@ BigApple::BigApple()
 
 void BigApple::loadBigApple()
 {
-	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\bigApple.png"))
+	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\bigAppleAnimated.png"))
 	{
 		std::cout << "problem loading small apple texture" << std::endl;
 	}
@@ -18,6 +18,7 @@ void BigApple::loadBigApple()
 		m_texture.getSize().y * m_scale / 2)); // origin in the centre of apple
 	std::cout << "Origin x: " << m_sprite.getOrigin().x << " y:" << m_sprite.getOrigin().y << std::endl;
 	m_sprite.setPosition(m_position);
+	m_sprite.setTextureRect(sf::IntRect(0, 0, static_cast<int>(m_dimensions.x), static_cast<int>(m_dimensions.y)));
 	m_sprite.setScale(m_scale, m_scale);
 }
 /// <summary>
@@ -35,11 +36,24 @@ sf::Sprite BigApple::getSprite()
 void BigApple::update(sf::Vector2f t_gregorPosition)
 {
 	move();
+	animate();
 	if (!m_bigAppleAlive)
 	{
 		respawn(t_gregorPosition);
 	}
 }
+void BigApple::animate()
+{
+	m_lastFrame = m_currentFrame;
+	m_frameCounter += m_frameIncrement;
+	m_currentFrame = static_cast<int>(m_frameCounter) % NO_FRAMES;
+
+	if (m_lastFrame != m_currentFrame) // animate the button
+	{
+		m_sprite.setTextureRect(sf::IntRect(m_currentFrame * m_dimensions.x, 0, m_dimensions.x, m_dimensions.y));
+	}
+}
+
 /// <summary>
 /// random spawn for big apples, where first it generates the side it spawns on and then it generates a random number 
 /// to spawn it along the line on the x or y axis
