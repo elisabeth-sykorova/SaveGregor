@@ -5,7 +5,7 @@
 //------------------------------
 // Name: Elisabeth Sykorova
 // Login: C00301316
-// Work Done: loaded heart sprites, animated hearts, hearts state switching based on health 18-04-2024, animated gregor
+// Work Done: loaded heart sprites, animated hearts, hearts state switching based on health 18-04-2024, animated gregor, added sounds
 //
 
 

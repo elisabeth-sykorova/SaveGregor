@@ -4,7 +4,7 @@
 //------------------------------------------------------------------------------------
 // Name: Leo Bolaks
 // Login: C00299368
-// WOrk Done: helped debug, added respawn, added update,
+// Work Done: helped debug, added respawn, added update,
 
 
 

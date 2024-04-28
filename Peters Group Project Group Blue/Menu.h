@@ -5,7 +5,7 @@
 //-------------------------------
 // Name: Elisabeth Sykorova
 // Login: C00301316
-// Work Done: added start button sprite and textures, animated start button, added switching between two start button states(/textures)
+// Work Done: added start button sprite and textures, animated start button, added switching between two start button states(/textures), sound button, 
 //
 
 #ifndef Menu_HPP

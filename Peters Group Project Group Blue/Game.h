@@ -4,7 +4,7 @@
 //----------------------------------------------------------------------------------------------------------------
 // Name: Elisabeth Sykorova
 // Login: C00301316
-// Work Done: Mouse move/ released functions, added mouse dot circle shape,
+// Work Done: Mouse move/ released functions, added mouse dot circle shape, added sounds and background, adjusted difficulty increasing, combined menu and end state into one - menu state
 
 #ifndef GAME_HPP
 #define GAME_HPP
