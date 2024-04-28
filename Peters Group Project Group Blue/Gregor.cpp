@@ -286,7 +286,7 @@ void Gregor::animateHearts()
 
 		if (m_hLastFrame != m_hCurrentFrame)
 		{
-			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 0, 760, 275));
+			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * m_heartDimensions.x, 0, m_heartDimensions.x, m_heartDimensions.y));
 		}
 		break;
 	}
@@ -300,7 +300,7 @@ void Gregor::animateHearts()
 
 		if (m_hLastFrame != m_hCurrentFrame)
 		{
-			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 275, 760, 275));
+			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * m_heartDimensions.x, 275, m_heartDimensions.x, m_heartDimensions.y));
 		}
 
 		break;
@@ -315,7 +315,7 @@ void Gregor::animateHearts()
 
 		if (m_hLastFrame != m_hCurrentFrame)
 		{
-			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 550, 760, 275));
+			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * m_heartDimensions.x, 550, m_heartDimensions.x, m_heartDimensions.y));
 		}
 
 		break;
@@ -330,7 +330,7 @@ void Gregor::animateHearts()
 
 		if (m_hLastFrame != m_hCurrentFrame)
 		{
-			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * 760, 825, 760, 275));
+			m_heartsSprite.setTextureRect(sf::IntRect(m_hCurrentFrame * m_heartDimensions.x, 825, m_heartDimensions.x, m_heartDimensions.y));
 		}
 
 		break;

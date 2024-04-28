@@ -117,17 +117,6 @@ void Game::processKeys(sf::Event t_event)
 		m_exitGame = true;
 	}
 
-	if (sf::Keyboard::Num1 == t_event.key.code)
-	{
-		menu.setStartButtonState(1);
-	}
-	if (sf::Keyboard::Num0 == t_event.key.code)
-	{
-		menu.setStartButtonState(0);
-	}
-
-
-
 }
 
 /// <summary>
@@ -175,9 +164,9 @@ void Game::update(sf::Time t_deltaTime)
 		{
 			m_backgroundMusic.play();
 		}
-		else if (m_backgroundMusic.getStatus() != sf::Sound::Stopped && !menu.getSoundOn())
+		else if (m_backgroundMusic.getStatus() != sf::Sound::Paused && !menu.getSoundOn())
 		{
-			m_backgroundMusic.stop();
+			m_backgroundMusic.pause();
 		}
 
 		menu.animateSprites();
@@ -470,6 +459,7 @@ void Game::loadSound()
 	}
 	m_backgroundMusic.setBuffer(m_menuMusicBuffer);
 	m_backgroundMusic.setVolume(60);
+	m_backgroundMusic.setLoop(true);
 
 }
 

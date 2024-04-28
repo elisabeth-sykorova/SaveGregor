@@ -52,7 +52,7 @@ class Gregor
 	// hearts
 	sf::Texture m_heartsTexture;
 	sf::Sprite m_heartsSprite;
-	sf::Vector2f m_heartDimensions{ 3040,1100 };
+	sf::Vector2f m_heartDimensions{ 760,275 };
 	// animating hearts
 	int m_hCurrentFrame = 0; // tracks the current frame, is used to multiply coordinates of texture rect
 	float m_hFrameIncrement = 0.2; // increments the frame counter with each update
