@@ -1,9 +1,4 @@
-/// <summary>
-/// @author Peter Lowe
-/// @date May 2019
-///
-/// you need to change the above lines or lose marks
-/// </summary>
+// Authors: Leo Bolaks, Elisabeth Sykorova
 
 #include "Game.h"
 
@@ -16,7 +11,7 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 1200U, 900U, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ 1200U, 900U, 32U }, "Gregor Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
