@@ -25,6 +25,7 @@ Game::Game() :
 	setupFontAndText(); // load font 
 	setupMouseDot();
 	loadBackground();
+	loadSound();
 
 	for (int index = 0; index < MAX_SMALL_APPLES; index++)
 	{
@@ -97,12 +98,9 @@ void Game::processEvents()
 			if (m_gameState == GameStates::Menu)
 			{
 				soundButtonCollision();
-			}
-			if (m_gameState == GameStates::Menu)
-			{
 				menuCollisions();
 			}
-			if (m_gameState == GameStates::End)
+			else if (m_gameState == GameStates::End)
 			{
 				endCollisions();
 			}
@@ -199,7 +197,7 @@ void Game::render()
 	{
 		m_window.draw(m_backgroundSprite);
 		m_window.draw(gregor.getGregor());
-		m_window.draw(gregor.getGregorHitbox());
+		//m_window.draw(gregor.getGregorHitbox());
 		for (int index = 0; index < m_activeSmallApple; index++)
 		{
 			m_window.draw(smallApples[index].getSprite());
@@ -254,7 +252,7 @@ void Game::loadBackground()
 		std::cout << "problem loading start bg" << std::endl;
 	}
 
-	if (!m_gameplayBg.loadFromFile("ASSETS\\IMAGES\\tiles.png"))
+	if (!m_gameplayBg.loadFromFile("ASSETS\\IMAGES\\tiles_lighter.png"))
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading game bg" << std::endl;
@@ -281,6 +279,11 @@ void Game::processMouseReleased()
 				m_deflections++;
 			}
 			smallApples[index].setReflectTrue();
+
+			if (menu.getSoundOn())
+			{
+				m_appleClickedSound.play();
+			}
 			
 		}
 		
@@ -290,6 +293,10 @@ void Game::processMouseReleased()
 		if (m_mouseDot.getGlobalBounds().intersects(bigApples[i].getSprite().getGlobalBounds()))
 		{
 			bigApples[i].deflectCounter();
+			if (menu.getSoundOn())
+			{
+				m_appleClickedSound.play();
+			}
 		}
 	}
 }
@@ -322,6 +329,10 @@ void Game::menuCollisions()
 {
 	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds()))
 	{
+		if (menu.getSoundOn())
+		{
+			m_buttonClickSound.play();
+		}
 		m_gameState = GameStates::Game;
 	}
 
@@ -331,6 +342,10 @@ void Game::endCollisions()
 {
 	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds()))
 	{
+		if (menu.getSoundOn())
+		{
+			m_buttonClickSound.play();
+		}
 		gameReset();
 		m_gameState = GameStates::Game;
 	}
@@ -394,6 +409,23 @@ void Game::gameReset()
 	}
 
 	gregor.gregorReset();
+
+}
+
+void Game::loadSound()
+{
+	if (!m_buttonClickBuffer.loadFromFile("ASSETS/AUDIO/page_turn.wav"))
+	{
+		std::cout << "Error button click sound" << std::endl;
+	}
+	m_buttonClickSound.setBuffer(m_buttonClickBuffer);
+	m_buttonClickSound.setVolume(60);
+
+	if (!m_appleClickedBuffer.loadFromFile("ASSETS/AUDIO/reflect.wav"))
+	{
+		std::cout << "Error reflect sound" << std::endl;
+	}
+	m_appleClickedSound.setBuffer(m_appleClickedBuffer);
 
 }
 

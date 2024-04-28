@@ -61,6 +61,8 @@ private:
 
 	void gameReset();
 
+	void loadSound();
+
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
 	sf::Text m_welcomeMessage; // text used for message on screen
@@ -95,6 +97,13 @@ private:
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_startBg;
 	sf::Texture m_gameplayBg;
+
+	// sound effects
+	sf::Sound m_buttonClickSound;
+	sf::SoundBuffer m_buttonClickBuffer;
+
+	sf::Sound m_appleClickedSound;
+	sf::SoundBuffer m_appleClickedBuffer;
 
 };
 
