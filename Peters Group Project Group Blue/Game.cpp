@@ -169,9 +169,15 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Menu)
 	{
-		if (m_backgroundMusic.getStatus() != sf::Sound::Playing)
+		buttonHovering();
+
+		if (m_backgroundMusic.getStatus() != sf::Sound::Playing && menu.getSoundOn())
 		{
 			m_backgroundMusic.play();
+		}
+		else if (m_backgroundMusic.getStatus() != sf::Sound::Stopped && !menu.getSoundOn())
+		{
+			m_backgroundMusic.stop();
 		}
 
 		menu.animateSprites();
@@ -283,7 +289,6 @@ void Game::processMouseReleased()
 			if (!smallApples[index].checkDeflected())
 			{
 				m_deflections++;
-				std::cout << m_deflections << std::endl;
 			}
 			smallApples[index].setReflectTrue();
 
@@ -304,7 +309,6 @@ void Game::processMouseReleased()
 			if (bigApples[i].checkDeflected() && !bigApples[i].getCountedReflection()) // if big apple is deflected but it was not counter yet
 			{
 				m_deflections++;
-				std::cout << m_deflections << std::endl;
 				bigApples[i].countReflection(); // count it (once)
 			}
 
@@ -363,6 +367,18 @@ void Game::menuCollisions()
 		m_backgroundSprite.setTexture(m_gameplayBg);
 	}
 
+}
+
+void Game::buttonHovering()
+{
+	if (m_mouseDot.getGlobalBounds().intersects(menu.getStartGameSprite().getGlobalBounds()))
+	{
+		menu.changeToRed();
+	}
+	else
+	{
+		menu.changeToWhite();
+	}
 }
 
 void Game::soundButtonCollision()

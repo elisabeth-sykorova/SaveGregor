@@ -51,6 +51,7 @@ private:
 	void bigAppleCollisions();
 
 	void menuCollisions();
+	void buttonHovering();
 	void soundButtonCollision();
 
 	void gregorCheck();

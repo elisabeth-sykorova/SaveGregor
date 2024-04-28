@@ -93,6 +93,16 @@ void Menu::animateSprites()
 
 }
 
+void Menu::changeToRed()
+{
+	m_startGameSprite.setColor(sf::Color::Red);
+}
+
+void Menu::changeToWhite()
+{
+	m_startGameSprite.setColor(sf::Color::White);
+}
+
 /// <summary>
 /// set the state of the start button, 0 = START GAME, 1 = RESTART GAME
 /// </summary>

@@ -65,6 +65,8 @@ public:
 	void loadSprites();
 	sf::Sprite getStartGameSprite();
 	void animateSprites();
+	void changeToRed();
+	void changeToWhite();
 
 	void setStartButtonState(int t_startButtonState); // used to switch the start button state and change its texture (0 - Save Gregor = start, 1 - Try Again = restart)
 	void setRespawnButton();
