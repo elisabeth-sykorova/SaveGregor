@@ -15,7 +15,7 @@ SmallApple::SmallApple()
 
 void SmallApple::loadSmallApple()
 {
-	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\smallApple.png"))
+	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\smallAppleAnimated.png"))
 	{
 		std::cout << "problem loading small apple texture" << std::endl;
 	}
@@ -23,6 +23,7 @@ void SmallApple::loadSmallApple()
 	m_sprite.setTexture(m_texture);
 	m_sprite.setOrigin(sf::Vector2f(m_texture.getSize().x * m_scale / 2,
 									m_texture.getSize().y * m_scale / 2)); // origin in the centre of apple
+	m_sprite.setTextureRect(sf::IntRect(0, 0, m_dimensions.x, m_dimensions.y));
 	m_sprite.setScale(m_scale, m_scale);
 }
 
@@ -102,6 +103,18 @@ void SmallApple::move()
 	}
 }
 
+void SmallApple::animate()
+{
+	m_lastFrame = m_currentFrame;
+	m_frameCounter += m_frameIncrement;
+	m_currentFrame = static_cast<int>(m_frameCounter) % NO_FRAMES;
+
+	if (m_lastFrame != m_currentFrame) // animate the button
+	{
+		m_sprite.setTextureRect(sf::IntRect(m_currentFrame * m_dimensions.x, 0, m_dimensions.x, m_dimensions.y));
+	}
+}
+
 void SmallApple::setAliveFalse()
 {
 	m_smallAppleAlive = false;
@@ -115,6 +128,7 @@ bool SmallApple::checkDeflected()
 void SmallApple::update(sf::Vector2f t_gregorPosition)
 {
 	move();
+	animate();
 	if (!m_smallAppleAlive)
 	{
 		respawn(t_gregorPosition);

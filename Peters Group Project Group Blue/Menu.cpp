@@ -102,7 +102,7 @@ void Menu::changeToRed()
 
 void Menu::changeToWhite()
 {
-	m_startGameSprite.setColor(sf::Color(229,227,222));
+	m_startGameSprite.setColor(sf::Color::White);
 }
 
 /// <summary>
