@@ -129,6 +129,7 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_gameState == GameStates::Game)
 	{
 		updateTime();
+		updateAppleCount();
 
 		if (m_backgroundMusic.getStatus() != sf::Sound::Stopped) // later swap for a different sound
 		{
@@ -218,6 +219,8 @@ void Game::render()
 		m_window.draw(gregor.getGregor());
 		m_window.draw(gregor.getHearts());
 		m_window.draw(m_timeElapsed);
+		m_window.draw(m_appleCountText);
+		m_window.draw(m_appleCountIcon);
 	}
 	m_window.display();
 }
@@ -244,6 +247,21 @@ void Game::setupFontAndText()
 	m_endGameMessage.setFillColor(sf::Color(229, 227, 222));
 	m_endGameMessage.setOrigin(m_endGameMessage.getGlobalBounds().width / 2, m_endGameMessage.getGlobalBounds().height / 2);
 	m_endGameMessage.setPosition(SCREEN_WIDTH_BIG_APPLE/2, SCREEN_HEIGHT_BIG_APPLE/2 + 100);
+
+	m_appleCountText.setFont(m_gregorFont);
+	m_appleCountText.setString(std::to_string(m_deflections));
+	m_appleCountText.setCharacterSize(32);
+	m_appleCountText.setFillColor(sf::Color(229, 227, 222));
+	m_appleCountText.setPosition(0 + 60, 0 + 90);
+
+	if (!m_appleCountTexture.loadFromFile("ASSETS\\IMAGES\\apple_indicator.png"))
+	{
+		std::cout << "problem loading apple indicator" << std::endl;
+	}
+	m_appleCountIcon.setTexture(m_appleCountTexture);
+	m_appleCountIcon.setScale(0.5,0.5);
+	m_appleCountIcon.setPosition(0 + 11, 0 + 80);
+
 
 }
 
@@ -449,6 +467,11 @@ void Game::updateTime()
 
 	m_timeString = std::to_string(m_minutes) + divider + null + std::to_string(m_seconds);
 	m_timeElapsed.setString(m_timeString);
+}
+
+void Game::updateAppleCount()
+{
+	m_appleCountText.setString(std::to_string(m_deflections));
 }
 
 void Game::gameReset()

@@ -23,7 +23,7 @@ class BigApple
 	sf::Texture m_texture; // texture for apple
 	sf::Vector2f m_position{ 0.0f,0.0f }; // position of apple
 	sf::Sprite m_sprite; // sprite for apple
-	float m_scale = 0.13f; // scaled down
+	float m_scale = 0.26f; // scaled down
 	float m_speed = 2.0f; // speed of apple
 	float m_lineLength; // line along which apple moves
 	sf::Vector2f m_velocity; // velocity at which it moves
@@ -41,7 +41,7 @@ class BigApple
 	float m_frameCounter = 0.0f; // keeps the float count of current frame
 	int m_lastFrame;
 	const int NO_FRAMES = 30;
-	sf::Vector2f m_dimensions{ 1000.0f,1000.0f };
+	sf::Vector2f m_dimensions{ 500.0f,500.0f };
 
 	bool m_countedReflection = false;
 

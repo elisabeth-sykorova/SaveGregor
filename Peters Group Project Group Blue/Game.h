@@ -63,6 +63,7 @@ private:
 	void addEnemies();
 
 	void updateTime();
+	void updateAppleCount();
 
 	void gameReset();
 
@@ -121,6 +122,11 @@ private:
 	int m_seconds = 0;
 	int m_minutes = 0;
 	int m_secondsLastChecked = m_seconds;
+
+	// Apples indicator
+	sf::Text m_appleCountText;
+	sf::Sprite m_appleCountIcon;
+	sf::Texture m_appleCountTexture;
 
 	// displaying time
 	sf::Text m_timeElapsed;
