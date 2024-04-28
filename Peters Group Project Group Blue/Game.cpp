@@ -167,7 +167,6 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_gameState == GameStates::Menu)
 	{
-		m_backgroundSprite.setTexture(m_startBg); // keeps setting
 
 		buttonHovering();
 
@@ -192,10 +191,13 @@ void Game::update(sf::Time t_deltaTime)
 		if (!m_gamePlayed)
 		{
 			menu.setStartButtonState(0);
+			m_backgroundSprite.setTexture(m_startBg); // keeps setting
 		}
 		else
 		{
 			menu.setStartButtonState(1);
+
+			m_backgroundSprite.setTexture(m_endBg);
 			m_endGameMessage.setString("You kept Gregor alive for " + std::to_string(m_minutes) + " minutes and " + std::to_string(m_seconds) + " seconds and saved him from " + std::to_string(m_deflections) + " apples.");
 			m_endGameMessage.setOrigin(m_endGameMessage.getGlobalBounds().width / 2, m_endGameMessage.getGlobalBounds().height / 2);
 			m_endGameMessage.setPosition(SCREEN_WIDTH_BIG_APPLE / 2, SCREEN_HEIGHT_BIG_APPLE / 2 + 100);
@@ -322,6 +324,14 @@ void Game::loadBackground()
 		// simple error message if previous call fails
 		std::cout << "problem loading game bg" << std::endl;
 	}
+
+	if (!m_endBg.loadFromFile("ASSETS\\IMAGES\\bgdeath.png"))
+	{
+		// simple error message if previous call fails
+		std::cout << "problem loading end bg" << std::endl;
+	}
+
+
 
 	m_backgroundSprite.setTexture(m_startBg);
 

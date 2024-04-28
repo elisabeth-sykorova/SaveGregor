@@ -112,6 +112,7 @@ private:
 	// background
 	sf::Sprite m_backgroundSprite;
 	sf::Texture m_startBg;
+	sf::Texture m_endBg;
 	sf::Texture m_gameplayBg;
 	sf::Texture m_instructionsBg;
 
