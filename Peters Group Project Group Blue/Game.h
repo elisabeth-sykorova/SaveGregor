@@ -10,6 +10,10 @@
 #define GAME_HPP
 
 #include <SFML/Graphics.hpp>
+#include <string>
+#include <iostream>
+#include "ctime"
+#include"cstdlib"
 
 #include "Gregor.h"
 #include "SmallApple.h"
@@ -58,13 +62,14 @@ private:
 
 	void addEnemies();
 
+	void updateTime();
+
 	void gameReset();
 
 	void loadSound();
 
 	sf::RenderWindow m_window; // main SFML window
-	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
+	sf::Font m_gregorFont;
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
@@ -110,6 +115,15 @@ private:
 
 	sf::Sound m_backgroundMusic;
 	sf::SoundBuffer m_menuMusicBuffer;
+
+	// Time tracking
+	float m_secondsCounter = 0.0f;
+	int m_seconds = 0;
+	int m_minutes = 0;
+	int m_secondsLastChecked = m_seconds;
+
+	// displaying time
+	sf::Text m_timeElapsed;
 };
 
 #endif // !GAME_HPP
