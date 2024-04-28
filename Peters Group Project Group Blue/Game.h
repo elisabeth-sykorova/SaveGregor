@@ -27,6 +27,7 @@
 enum class GameStates
 {
 	Menu,
+	Instructions,
 	Game
 };
 class Game
@@ -67,12 +68,18 @@ private:
 
 	void gameReset();
 
+	void instructionsButton();
+
 	void loadSound();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_gregorFont;
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
+
+	sf::Texture m_instructionsIconTexture;
+	sf::Sprite m_instructionsIconSprite;
+
 	bool m_exitGame; // control exiting game
 	bool m_gamePlayed = false;
 
@@ -88,6 +95,7 @@ private:
 	Gregor gregor;
 	BigApple bigApples[MAX_BIG_APPLES];
 	Menu menu;
+	Instructions instructions;
 
 	// mouse point
 	sf::Vector2f m_mouseEndVector;
